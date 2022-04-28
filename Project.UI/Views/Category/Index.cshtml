@@ -1,0 +1,29 @@
+﻿@model CategoryVM
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<table class="table table-bordered" style="margin-top:20px;">
+
+    <tr>
+        <th>ID</th>
+        <th>KAtegori Adı</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+
+    @foreach (Category c in Model.Categories)
+    {
+        <tr>
+            <td>@c.ID</td>
+            <td>@c.CategoryName</td>
+            <td><a href="/Category/DeleteCategory/@c.ID" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Category/UpdateCategory/@c.ID" class="btn btn-success">Güncelle</a></td>
+        </tr>
+    }
+</table>
+<a href="/Category/AddCategory" class="btn btn-primary">Kategori Ekle</a>
+

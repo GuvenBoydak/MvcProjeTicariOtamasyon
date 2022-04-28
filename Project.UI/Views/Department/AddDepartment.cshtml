@@ -1,0 +1,20 @@
+﻿@model DepartmentVM
+
+@{
+    ViewBag.Title = "AddDepartment";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Departman Sayfası</h2>
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(x => x.Department.Name);
+    @Html.TextBoxFor(x => x.Department.Name, new { @class = "form-control" });
+    <br />
+
+    <button class="btn btn-danger" style="background-color:yellowgreen">Kaydet</button>
+}
+
+

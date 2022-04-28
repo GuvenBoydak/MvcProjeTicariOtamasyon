@@ -1,0 +1,36 @@
+﻿@model DepartmentVM
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<table class="table table-hover">
+    <tr>
+        <th>ID</th>
+        <th>Departman Adi</th>
+        <th colspan="3" style="text-align:center;">İşlemler</th>
+    </tr>
+    <tbody>
+        @foreach (Department item in Model.Departments)
+        {
+        <tr>
+            <td>@item.ID</td>
+            <td>@item.Name</td>
+            <td>
+                @Html.ActionLink("Sil", "DeleteDepartment", new { id = item.ID }, new { @class = "btn btn-danger" })
+            </td>
+            <td>
+                @Html.ActionLink("Güncelle", "UpdateDepartment", new { id = item.ID }, new { @class = "btn btn-success" })
+            </td>
+            <td>
+                @Html.ActionLink("Departman Detay", "DetailDepartment", new { id = item.ID }, new { @class = "btn btn-warning" })
+            </td>
+        </tr>
+        }
+    </tbody>
+
+</table>
+@Html.ActionLink("Departman Ekle", "AddDepartment",null, new { @class = "btn btn-info" })
+
+

@@ -1,0 +1,21 @@
+﻿@model CategoryVM
+@{
+    ViewBag.Title = "UpdateCategory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<h2>Kategori Güncelleme</h2>
+<br />
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.LabelFor(x => x.Category.CategoryName)
+        @Html.TextBoxFor(x => x.Category.CategoryName, new { @class = "form-control" })
+        @Html.HiddenFor(x => x.Category.ID)
+
+    </div>
+
+    <button class="btn btn-warning"> Günceller</button>
+
+}
