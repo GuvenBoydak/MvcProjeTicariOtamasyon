@@ -12,11 +12,11 @@ namespace Project.MAP.Options
         public InvoiceMap()
         {
             HasKey(x=>x.ID);
-            Property(x => x.SerialNo).HasColumnType("nvarchar").HasMaxLength(1);
-            Property(x => x.InvoiceNumber).HasColumnType("nvarchar").HasMaxLength(20);
-            Property(x => x.TaxAuthorityNumber).HasColumnType("nvarchar").HasMaxLength(60);
-            Property(x => x.Submitter).HasColumnType("nvarchar").HasMaxLength(40);
-            Property(x => x.Receiver).HasColumnType("nvarchar").HasMaxLength(40);
+            Property(x => x.SerialNo).HasColumnType("nvarchar").HasMaxLength(1).IsRequired();
+            Property(x => x.InvoiceNumber).HasColumnType("nvarchar").HasMaxLength(20).IsRequired();
+            Property(x => x.TaxAuthorityNumber).HasColumnType("nvarchar").HasMaxLength(60).IsRequired();
+            Property(x => x.Submitter).HasColumnType("nvarchar").HasMaxLength(40).IsRequired();
+            Property(x => x.Receiver).HasColumnType("nvarchar").HasMaxLength(40).IsRequired();
         }
     }
 }

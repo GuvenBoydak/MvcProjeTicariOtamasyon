@@ -12,8 +12,8 @@ namespace Project.MAP.Options
         public AdminMap()
         {
             HasKey(x => x.ID);
-            Property(x => x.UserName).HasColumnType("nvarchar").HasMaxLength(40);
-            Property(x => x.Password).HasColumnType("nvarchar").HasMaxLength(40);
+            Property(x => x.UserName).HasColumnType("nvarchar").HasMaxLength(40).IsRequired();
+            Property(x => x.Password).HasColumnType("nvarchar").HasMaxLength(40).IsRequired();
             Property(x => x.Authorization).HasColumnType("nvarchar").HasMaxLength(1);
         }
     }

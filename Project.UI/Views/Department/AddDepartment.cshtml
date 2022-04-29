@@ -5,13 +5,14 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Departman Sayfası</h2>
+<h2>Departman Ekle</h2>
 <br />
 
 @using (Html.BeginForm())
 {
     @Html.LabelFor(x => x.Department.Name);
     @Html.TextBoxFor(x => x.Department.Name, new { @class = "form-control" });
+    @Html.ValidationMessage("Name", "", new { @style = "color:red" });
     <br />
 
     <button class="btn btn-danger" style="background-color:yellowgreen">Kaydet</button>

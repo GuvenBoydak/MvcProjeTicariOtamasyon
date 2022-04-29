@@ -1,0 +1,33 @@
+﻿@model CustomerVM
+@{
+    ViewBag.Title = "UpdateCustomer";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Müşteri Bilgilerini Güncelle</h2>
+
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(x=>x.Customer.ID);
+    @Html.LabelFor(x => x.Customer.FirstName);
+    @Html.TextBoxFor(x => x.Customer.FirstName, new { @class = "form-control" });
+    @Html.ValidationMessage("FirstName", "", new { @style = "color:red" })
+    <br />
+    @Html.LabelFor(x => x.Customer.LastName);
+    @Html.TextBoxFor(x => x.Customer.LastName, new { @class = "form-control" });
+    @Html.ValidationMessage("LastName", "", new { @style = "color:red" })
+    <br />
+    @Html.LabelFor(x => x.Customer.Email);
+    @Html.TextBoxFor(x => x.Customer.Email, new { @class = "form-control" });
+    @Html.ValidationMessage("Email", "", new { @style = "color:red" })
+    <br />
+    @Html.LabelFor(x => x.Customer.City);
+    @Html.TextBoxFor(x => x.Customer.City, new { @class = "form-control" });
+    @Html.ValidationMessage("City", "", new { @style = "color:red" })
+    <br />
+
+    <button class="btn btn-danger" style="background-color:yellowgreen">Güncelle</button>
+}
+

@@ -12,10 +12,10 @@ namespace Project.MAP.Options
         public CustomerMap()
         {
             HasKey(x=>x.ID);
-            Property(x=>x.FirstName).HasColumnType("nvarchar").HasMaxLength(40);
-            Property(x=>x.LastName).HasColumnType("nvarchar").HasMaxLength(40);
-            Property(x=>x.City).HasColumnType("nvarchar").HasMaxLength(40);
-            Property(x=>x.Email).HasColumnType("nvarchar").HasMaxLength(50);
+            Property(x=>x.FirstName).HasColumnType("nvarchar").HasMaxLength(30).IsRequired();
+            Property(x=>x.LastName).HasColumnType("nvarchar").HasMaxLength(30).IsRequired();
+            Property(x=>x.City).HasColumnType("nvarchar").HasMaxLength(25).IsRequired();
+            Property(x=>x.Email).HasColumnType("nvarchar").HasMaxLength(50).IsRequired();
 
         }
     }

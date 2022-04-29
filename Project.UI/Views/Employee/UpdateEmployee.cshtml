@@ -1,0 +1,32 @@
+﻿@model EmployeeVM
+@{
+    ViewBag.Title = "UpdateEmployee";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Personel Güncelle</h2>
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(x => x.Employee.ID);
+
+    @Html.LabelFor(x => x.Employee.FirstName);
+    @Html.TextBoxFor(x => x.Employee.FirstName, new { @class = "form-control" });
+
+    <br />
+    @Html.LabelFor(x => x.Employee.LastName);
+    @Html.TextBoxFor(x => x.Employee.LastName, new { @class = "form-control" });
+
+    <br />
+    @Html.LabelFor(x => x.Employee.Image);
+    @Html.TextBoxFor(x => x.Employee.Image, new { @class = "form-control" });
+
+    <br />
+    @Html.LabelFor(x => x.Department.Name);
+    @Html.DropDownListFor(x => x.Employee.DepartmentID, new SelectList(Model.Departments, "ID", "Name"), "Lütfen Seciniz", new { @class = "form-control" })
+    <br />
+
+    <button class="btn btn-danger" style="background-color:yellowgreen">Güncelle</button>
+}
+

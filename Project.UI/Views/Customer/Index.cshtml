@@ -1,0 +1,40 @@
+﻿@model CustomerVM
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<table class="table table-hover">
+    <tr>
+        <th>ID</th>
+        <th> Adi</th>
+        <th> Soyadi</th>
+        <th> Sehir</th>
+        <th> Email</th>
+        <th colspan="3" style="text-align:center;">İşlemler</th>
+    </tr>
+    <tbody>
+        @foreach (Customer item in Model.Customers)
+        {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.City</td>
+                <td>@item.Email</td>
+                <td>
+                    @Html.ActionLink("Sil", "DeleteCustomer", new { id = item.ID }, new { @class = "btn btn-danger" })
+                </td>
+                <td>
+                    @Html.ActionLink("Güncelle", "UpdateCustomer", new { id = item.ID }, new { @class = "btn btn-success" })
+                </td>
+                <td>
+                    @Html.ActionLink("Satış Geçmişi", "CustomerSales", new { id = item.ID }, new { @class = "btn btn-warning" })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+@Html.ActionLink("Müşteri Ekle", "AddCustomer", null, new { @class = "btn btn-info" })

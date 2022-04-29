@@ -12,7 +12,7 @@ namespace Project.MAP.Options
         public CategoryMap()
         {
             HasKey(x => x.ID);
-            Property(x => x.CategoryName).HasColumnType("nvarchar").HasMaxLength(40);
+            Property(x => x.CategoryName).HasColumnType("nvarchar").HasMaxLength(30).IsRequired();
         }
     }
 }

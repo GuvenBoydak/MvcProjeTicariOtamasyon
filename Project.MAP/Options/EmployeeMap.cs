@@ -12,8 +12,8 @@ namespace Project.MAP.Options
         public EmployeeMap()
         {
             HasKey(x=>x.ID);
-            Property(x=>x.FirstName).HasColumnType("nvarchar").HasMaxLength(40);
-            Property(x=>x.LastName).HasColumnType("nvarchar").HasMaxLength(40);
+            Property(x=>x.FirstName).HasColumnType("nvarchar").HasMaxLength(30).IsRequired();
+            Property(x=>x.LastName).HasColumnType("nvarchar").HasMaxLength(30).IsRequired();
             Property(x=>x.Image).HasColumnType("nvarchar").HasMaxLength(300);
 
 

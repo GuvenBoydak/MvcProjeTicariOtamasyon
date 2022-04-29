@@ -12,7 +12,7 @@ namespace Project.MAP.Options
         public ExpensMap()
         {
             HasKey(x=>x.ID);
-            Property(x => x.Description).HasColumnType("nvarchar").HasMaxLength(100);
+            Property(x => x.Description).HasColumnType("nvarchar").HasMaxLength(100).IsRequired(); 
         }
     }
 }

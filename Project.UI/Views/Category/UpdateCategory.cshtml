@@ -12,10 +12,11 @@
     <div class="form-group">
         @Html.LabelFor(x => x.Category.CategoryName)
         @Html.TextBoxFor(x => x.Category.CategoryName, new { @class = "form-control" })
+        @Html.ValidationMessage("CategoryName", "", new { @style = "color:red" })
+
         @Html.HiddenFor(x => x.Category.ID)
 
     </div>
 
-    <button class="btn btn-warning"> Günceller</button>
-
+    <button class="btn btn-warning"> Güncelle</button>
 }

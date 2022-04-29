@@ -1,4 +1,6 @@
-﻿using Project.BLL.DesingPatterns.GenericRepository.ConcreteRep;
+﻿using FluentValidation.Results;
+using Project.BLL.DesingPatterns.GenericRepository.ConcreteRep;
+using Project.BLL.ValidationRules;
 using Project.ENTITIES.Concrete.Entities;
 using Project.UI.ViewModels;
 using System;
@@ -11,15 +13,17 @@ namespace Project.UI.Controllers
 {
     public class DepartmentController : Controller
     {
-        DepartmentManager _dm;
-        EmployeeManager _em;
-        SalesMovementManager _sm;
+        DepartmentManager _dManager;
+        EmployeeManager _eManager;
+        SalesMovementManager _sManager;
+        DepartmentValidator _dValidator;
 
         public DepartmentController()
         {
-            _dm = new DepartmentManager();
-            _em = new EmployeeManager();
-            _sm = new SalesMovementManager();
+            _dManager = new DepartmentManager();
+            _eManager = new EmployeeManager();
+            _sManager = new SalesMovementManager();
+            _dValidator = new DepartmentValidator();
         }
 
         // GET: Department
@@ -27,7 +31,7 @@ namespace Project.UI.Controllers
         {
             DepartmentVM vM = new DepartmentVM()
             {
-                Departments = _dm.GetActives()
+                Departments = _dManager.GetActives()
             };
             return View(vM);
         }
@@ -40,7 +44,24 @@ namespace Project.UI.Controllers
         [HttpPost]
         public ActionResult AddDepartment(Department department)
         {
-            _dm.Add(department);
+            DepartmentVM model = new DepartmentVM()
+            {
+                Department = department
+            };
+
+            ValidationResult result = _dValidator.Validate(department);
+            if (!result.IsValid)
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(model);
+            }
+            else
+            {
+                _dManager.Add(department);
+            }
             return RedirectToAction("Index");
         }
 
@@ -49,7 +70,7 @@ namespace Project.UI.Controllers
         {
             DepartmentVM vM = new DepartmentVM()
             {
-                Department = _dm.Find(id)
+                Department = _dManager.Find(id)
             };
             return View(vM);
         }
@@ -57,13 +78,30 @@ namespace Project.UI.Controllers
         [HttpPost]
         public ActionResult UpdateDepartment(Department department)
         {
-            _dm.Update(department);
+            DepartmentVM model = new DepartmentVM()
+            {
+                Department = department
+            };
+
+            ValidationResult result = _dValidator.Validate(department);
+            if (!result.IsValid)
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(model);
+            }
+            else
+            {
+                _dManager.Update(department);
+            }
             return RedirectToAction("Index");
         }
 
         public ActionResult DeleteDepartment(int id)
         {
-            _dm.Delete(_dm.Find(id));
+            _dManager.Delete(_dManager.Find(id));
             return RedirectToAction("Index");
         }
 
@@ -71,10 +109,10 @@ namespace Project.UI.Controllers
         {
             DepartmentVM vM = new DepartmentVM()
             {
-                Employees = _em.Where(x => x.DepartmentID == id).ToList()
-                
+                Employees = _eManager.Where(x => x.DepartmentID == id).ToList()
+
             };
-            string departmentName = _dm.Where(x => x.ID == id).Select(z => z.Name).FirstOrDefault();
+            string departmentName = _dManager.Where(x => x.ID == id).Select(z => z.Name).FirstOrDefault();
             ViewBag.DepartmentName = departmentName;
             return View(vM);
         }
@@ -82,9 +120,10 @@ namespace Project.UI.Controllers
         {
             DepartmentVM vM = new DepartmentVM()
             {
-                SalesMovements = _sm.Where(x => x.EmployeeID == id).ToList()
+                SalesMovements = _sManager.Where(x => x.EmployeeID == id).ToList()
+
             };
-            string employee = _em.Where(x => x.ID == id).Select(z => z.FirstName).FirstOrDefault();
+            string employee = _eManager.Where(x => x.ID == id).Select(z => z.FirstName + "" + z.LastName).FirstOrDefault();
             ViewBag.Employee = employee;
             return View(vM);
         }

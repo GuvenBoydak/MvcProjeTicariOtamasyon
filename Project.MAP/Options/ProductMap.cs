@@ -12,8 +12,8 @@ namespace Project.MAP.Options
         public ProductMap()
         {
             HasKey(x=>x.ID);
-            Property(x => x.Name).HasColumnType("nvarchar").HasMaxLength(40);
-            Property(x => x.Brand).HasColumnType("nvarchar").HasMaxLength(40);
+            Property(x => x.Name).HasColumnType("nvarchar").HasMaxLength(40).IsRequired();
+            Property(x => x.Brand).HasColumnType("nvarchar").HasMaxLength(40).IsRequired();
             Property(x => x.ProductImage).HasColumnType("nvarchar").HasMaxLength(300);
         }
     }

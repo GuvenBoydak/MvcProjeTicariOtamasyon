@@ -12,6 +12,7 @@
     @Html.HiddenFor(x => x.Department.ID);
     @Html.LabelFor(x => x.Department.Name);
     @Html.TextBoxFor(x => x.Department.Name, new { @class = "form-control" });
+    @Html.ValidationMessage("Name", "",new {@style="color:red" });
     <br />
 
     <button class="btn btn-danger" style="background-color:yellowgreen">Güncelle</button>

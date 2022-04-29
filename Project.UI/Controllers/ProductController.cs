@@ -1,4 +1,5 @@
 ﻿using Project.BLL.DesingPatterns.GenericRepository.ConcreteRep;
+using Project.BLL.ValidationRules;
 using Project.ENTITIES.Concrete.Entities;
 using Project.UI.ViewModels;
 using System;
@@ -11,12 +12,12 @@ namespace Project.UI.Controllers
 {
     public class ProductController : Controller
     {
-        ProductManager _p;
-        CategoryManager _c;
+        ProductManager _pManager;
+        CategoryManager _cManager;
         public ProductController()
         {
-            _p = new ProductManager();
-            _c = new CategoryManager();
+            _pManager = new ProductManager();
+            _cManager = new CategoryManager();           
         }
 
         // GET: Product
@@ -24,7 +25,7 @@ namespace Project.UI.Controllers
         {
             ProductVM vM = new ProductVM()
             {
-                Products = _p.GetActives(),
+                Products = _pManager.GetActives(),
                 
             };
             return View(vM);
@@ -36,7 +37,7 @@ namespace Project.UI.Controllers
 
             ProductVM vM = new ProductVM()
             {
-                Categories = _c.GetActives()
+                Categories = _cManager.GetActives()
             };
             return View(vM);
         }
@@ -44,7 +45,7 @@ namespace Project.UI.Controllers
         [HttpPost]
         public ActionResult AddProduct(Product product)
         {
-            _p.Add(product);
+            _pManager.Add(product);
             return RedirectToAction("Index");
         }
 
@@ -52,8 +53,8 @@ namespace Project.UI.Controllers
         {
             ProductVM vM = new ProductVM()
             {
-                Product = _p.Find(id),
-                Categories = _c.GetActives()
+                Product = _pManager.Find(id),
+                Categories = _cManager.GetActives()
             };
 
             return View(vM);
@@ -62,13 +63,13 @@ namespace Project.UI.Controllers
         [HttpPost]
         public ActionResult UpdateProduct(Product product)
         {
-            _p.Update(product);
+            _pManager.Update(product);
             return RedirectToAction("Index");
         }
 
         public ActionResult DeleteProduct(int id)
         {
-            _p.Delete(_p.Find(id));
+            _pManager.Delete(_pManager.Find(id));
             return RedirectToAction("Index");
         }
 

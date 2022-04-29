@@ -1,4 +1,6 @@
-﻿using Project.BLL.DesingPatterns.GenericRepository.ConcreteRep;
+﻿using FluentValidation.Results;
+using Project.BLL.DesingPatterns.GenericRepository.ConcreteRep;
+using Project.BLL.ValidationRules;
 using Project.ENTITIES.Concrete.Entities;
 using Project.UI.ViewModels;
 using System;
@@ -11,31 +13,49 @@ namespace Project.UI.Controllers
 {
     public class CategoryController : Controller
     {
-        CategoryManager _cm;
+        CategoryManager _cManager;
+        CategoryValidator _cValidator;
         public CategoryController()
         {
-            _cm = new CategoryManager();
+            _cManager = new CategoryManager();
+            _cValidator = new CategoryValidator();
         }
         // GET: Category
         public ActionResult Index()
         {
             CategoryVM vM = new CategoryVM()
             {
-                Categories = _cm.GetActives()
+                Categories = _cManager.GetActives()
             };
             return View(vM);
         }
 
         public ActionResult AddCategory()
         {
-
             return View();
         }
 
         [HttpPost]
         public ActionResult AddCategory(Category category)
         {
-            _cm.Add(category);
+            CategoryVM model = new CategoryVM()
+            {
+                Category = category
+            };
+
+            ValidationResult result = _cValidator.Validate(category);
+            if (!result.IsValid)
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(model);
+            }
+            else
+            {
+                _cManager.Add(category);
+            }
             return RedirectToAction("Index");
         }
 
@@ -43,7 +63,7 @@ namespace Project.UI.Controllers
         {
             CategoryVM vM = new CategoryVM()
             {
-                Category = _cm.Find(id)
+                Category = _cManager.Find(id)
             };
             return View(vM);
         }
@@ -51,13 +71,30 @@ namespace Project.UI.Controllers
         [HttpPost]
         public ActionResult UpdateCategory(Category category)
         {
-            _cm.Update(category);
+            CategoryVM model = new CategoryVM()
+            {
+                Category = category
+            };
+
+            ValidationResult result = _cValidator.Validate(category);
+            if (!result.IsValid)
+            {
+                foreach (ValidationFailure item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View(model);
+            }
+            else
+            {
+                _cManager.Update(category);
+            }
             return RedirectToAction("Index");
         }
 
         public ActionResult DeleteCategory(int id)
         {
-            _cm.Delete(_cm.Find(id));
+            _cManager.Delete(_cManager.Find(id));
             return RedirectToAction("Index");
         }
 

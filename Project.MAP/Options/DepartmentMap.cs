@@ -12,7 +12,7 @@ namespace Project.MAP.Options
         public DepartmentMap()
         {
             HasKey(x=>x.ID);
-            Property(x=>x.Name).HasColumnType("nvarchar").HasMaxLength(40);
+            Property(x=>x.Name).HasColumnType("nvarchar").HasMaxLength(40).IsRequired();
         }
     }
 }

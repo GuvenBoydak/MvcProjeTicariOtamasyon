@@ -10,6 +10,8 @@
 <form class="form-group" method="post">
     @Html.LabelFor(x => x.Category.CategoryName)
     @Html.TextBoxFor(x => x.Category.CategoryName, new { @class = "form-control" })
+    @Html.ValidationMessage("CategoryName", "", new { @style = "color:red" })
+
     <br />
     <button class="btn btn-info">Kaydet</button>
 </form>

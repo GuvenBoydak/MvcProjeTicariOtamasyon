@@ -1,0 +1,38 @@
+﻿@model EmployeeVM
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<table class="table table-hover">
+    <tr>
+        <th>ID</th>
+        <th>Personel Adi</th>
+        <th>Personel Soyadi</th>
+        <th>Görsel</th>
+        <th>Departman</th>
+        <th colspan="2" style="text-align:center;">İşlemler</th>
+    </tr>
+    <tbody>
+        @foreach (Employee item in Model.Employees)
+        {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.Image</td>
+                <td>@item.Department.Name</td>    
+                <td>
+                    @Html.ActionLink("Güncelle", "UpdateEmployee", new { id = item.ID }, new { @class = "btn btn-success" })
+                </td>
+                <td>
+                    @Html.ActionLink("Departman Personel Satış", "DepartmentEployeeSales","Department", new { id = item.ID }, new { @class = "btn btn-warning" })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+@Html.ActionLink("Persolnel Ekle", "AddEmployee", null, new { @class = "btn btn-info" })
+
