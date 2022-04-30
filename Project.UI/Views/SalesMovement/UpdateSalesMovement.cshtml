@@ -1,0 +1,46 @@
+﻿@model SalesMovementVM
+@{
+    ViewBag.Title = "UpdateSalesMovement";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<h2>Satış Güncelle</h2>
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(x=>x.SalesMovement.ID)
+    @Html.LabelFor(x => x.Products);
+    @Html.DropDownListFor(x => x.SalesMovement.ProductID, new SelectList(Model.Products, "ID", "Name"), "Lütfen Seciniz", new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Customers);
+
+    var staffList = Model.Customers.Select(s => new { Value = s.ID, Text = $"{s.FirstName} {s.LastName}" });
+    SelectList staffSelect = new SelectList(staffList, "Value", "Text");
+
+    @Html.DropDownListFor(m => m.SalesMovement.CustomerID, staffSelect, "", new { @class = "form-control" })
+
+    <br />
+    @Html.LabelFor(x => x.Employees);
+
+    var EmployeeList = Model.Employees.Select(s => new { Value = s.ID, Text = $"{s.FirstName} {s.LastName}" });
+    SelectList EmployeeSelect = new SelectList(EmployeeList, "Value", "Text");
+
+    @Html.DropDownListFor(m => m.SalesMovement.EmployeeID, EmployeeSelect, "", new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.SalesMovement.Quantity);
+    @Html.TextBoxFor(x => x.SalesMovement.Quantity, new { @class = "form-control" });
+    <br />
+    @Html.LabelFor(x => x.SalesMovement.Price);
+    @Html.TextBoxFor(x => x.SalesMovement.Price, new { @class = "form-control" });
+    <br />
+    @Html.LabelFor(x => x.SalesMovement.TotalPrice);
+    @Html.TextBoxFor(x => x.SalesMovement.TotalPrice, new { @class = "form-control" });
+    <br />
+    @Html.LabelFor(x => x.SalesMovement.Date);
+    @Html.TextBoxFor(x => x.SalesMovement.Date, new { @class = "form-control" });
+    <br />
+    <button class="btn btn-danger" style="background-color:yellowgreen">Güncelle</button>
+}
+

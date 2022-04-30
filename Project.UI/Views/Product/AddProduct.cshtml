@@ -24,7 +24,7 @@
     @Html.LabelFor(x => x.Product.SellPrice);
     @Html.TextBoxFor(x => x.Product.SellPrice, new { @class = "form-control" });
     <br />
-    @Html.LabelFor(x => x.Category.CategoryName);
+    @Html.LabelFor(x => x.Category);
     @Html.DropDownListFor(x => x.Product.CategoryID, new SelectList(Model.Categories, "ID", "CategoryName"), "Lütfen Seciniz", new { @class = "form-control" })
     <br />
     @Html.LabelFor(x => x.Product.ProductImage);

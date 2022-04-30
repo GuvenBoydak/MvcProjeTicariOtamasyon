@@ -16,5 +16,7 @@ namespace Project.ENTITIES.Concrete.Entities
         //Relational Property
         public virtual List<SalesMovement> SalesMovements { get; set; }
 
+        public string FullName => $"{FirstName} {LastName}";
+
     }
 }

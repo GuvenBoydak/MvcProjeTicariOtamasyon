@@ -73,6 +73,15 @@ namespace Project.UI.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult ProductList()
+        {
+            ProductVM vM = new ProductVM()
+            {
+                Products = _pManager.GetActives(),
+                Categories=_cManager.GetActives()
+            };
+            return View(vM);
+        }
 
     }
 }
