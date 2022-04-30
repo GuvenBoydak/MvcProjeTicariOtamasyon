@@ -1,0 +1,28 @@
+﻿@model InvoiceVM
+@{
+    ViewBag.Title = "AddInvoiceBody";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<h2>Fatura Kalem Ekle</h2>
+<br />
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(x => x.InvoiceBody.Description)
+    @Html.TextBoxFor(x => x.InvoiceBody.Description, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.InvoiceBody.Quantity)
+    @Html.TextBoxFor(x => x.InvoiceBody.Quantity, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.InvoiceBody.UnitPrice)
+    @Html.TextBoxFor(x => x.InvoiceBody.UnitPrice, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.InvoiceBody.TotalPrice)
+    @Html.TextBoxFor(x => x.InvoiceBody.TotalPrice, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.InvoiceBody.InvoiceID)
+    @Html.TextBoxFor(x => x.InvoiceBody.InvoiceID, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-default" style="background-color:yellowgreen">Ekle</button>
+}

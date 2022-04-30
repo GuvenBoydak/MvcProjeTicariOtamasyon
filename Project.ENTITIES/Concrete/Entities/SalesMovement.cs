@@ -8,7 +8,6 @@ namespace Project.ENTITIES.Concrete.Entities
 {
     public class SalesMovement : BaseEntity
     {
-        public DateTime Date { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }
         public decimal TotalPrice { get; set; }

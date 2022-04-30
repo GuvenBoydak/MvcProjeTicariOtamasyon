@@ -135,6 +135,7 @@
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SalesMovementController.cs" />
     <Compile Include="Global.asax.cs">
@@ -145,6 +146,7 @@
     <Compile Include="ViewModels\CustomerVM.cs" />
     <Compile Include="ViewModels\DepartmentVM.cs" />
     <Compile Include="ViewModels\EmployeeVM.cs" />
+    <Compile Include="ViewModels\InvoiceVM.cs" />
     <Compile Include="ViewModels\ProductVM.cs" />
     <Compile Include="ViewModels\SalesMovementVM.cs" />
   </ItemGroup>
@@ -525,6 +527,11 @@
     <Content Include="Views\SalesMovement\UpdateSalesMovement.cshtml" />
     <Content Include="Views\SalesMovement\DetailSalesMovement.cshtml" />
     <Content Include="Views\Product\ProductList.cshtml" />
+    <Content Include="Views\Invoice\Index.cshtml" />
+    <Content Include="Views\Invoice\AddInvoice.cshtml" />
+    <Content Include="Views\Invoice\UpdateInvoice.cshtml" />
+    <Content Include="Views\Invoice\DetailsInvoice.cshtml" />
+    <Content Include="Views\Invoice\AddInvoiceBody.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

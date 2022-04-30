@@ -46,7 +46,6 @@ namespace Project.UI.Controllers
         [HttpPost]
         public ActionResult AddSalesMovement(SalesMovement salesMovement)
         {
-            salesMovement.Date = DateTime.Parse(DateTime.Now.ToShortDateString());
             _sManager.Add(salesMovement);
             return RedirectToAction("Index");
         }

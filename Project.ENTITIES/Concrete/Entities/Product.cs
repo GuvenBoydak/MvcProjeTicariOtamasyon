@@ -21,7 +21,6 @@ namespace Project.ENTITIES.Concrete.Entities
         //Relational Property
         public virtual Category Category { get; set; }
         public virtual List<SalesMovement> SalesMovements { get; set; }
-        public virtual List<InvoiceBody> InvoiceBodies { get; set; }
 
     }
 }

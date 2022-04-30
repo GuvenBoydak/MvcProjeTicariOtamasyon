@@ -1,0 +1,33 @@
+﻿@model InvoiceVM
+@{
+    ViewBag.Title = "AddInvoice";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Fatura Ekle</h2>
+<br />
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(x => x.Invoice.SerialNo)
+    @Html.TextBoxFor(x => x.Invoice.SerialNo, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Invoice.InvoiceNumber)
+    @Html.TextBoxFor(x => x.Invoice.InvoiceNumber, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Invoice.TaxAuthorityNumber)
+    @Html.TextBoxFor(x => x.Invoice.TaxAuthorityNumber, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Invoice.CreatedDate)
+    @Html.TextBoxFor(x => x.Invoice.CreatedDate, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Invoice.Time)
+    @Html.TextBoxFor(x => x.Invoice.Time, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Invoice.Submitter)
+    @Html.TextBoxFor(x => x.Invoice.Submitter, new { @class = "form-control" })
+    <br />
+    @Html.LabelFor(x => x.Invoice.Receiver)
+    @Html.TextBoxFor(x => x.Invoice.Receiver, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-default" style="background-color:yellowgreen">Ekle</button>
+}

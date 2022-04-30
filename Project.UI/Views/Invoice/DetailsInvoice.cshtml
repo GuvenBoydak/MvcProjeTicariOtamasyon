@@ -1,0 +1,34 @@
+﻿@model InvoiceVM
+@{
+    ViewBag.Title = "DetailsInvoice";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>DetailsInvoice</h2>
+<br />
+<table class="table table-hover">
+    <tr>
+        <th>ID</th>
+        <th>Açıklama</th>
+        <th>Miktar</th>
+        <th>Birim Fiyat</th>
+        <th>Toplam Fiyat</th>
+        <th>Satişlar</th>
+    </tr>
+    <tbody>
+        @foreach (InvoiceBody item in Model.InvoiceBodies)
+        {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.Description</td>
+                <td>@item.Quantity</td>
+                <td>@item.UnitPrice</td>
+                <td>@item.TotalPrice</td>
+                <td>
+                    @Html.ActionLink("Satislar", "DepartmentEployeeSales", new { id = item.ID }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.ActionLink("Fatura Kalem Giriş", "AddInvoiceBody", null,new {@class="btn btn-warning" })
