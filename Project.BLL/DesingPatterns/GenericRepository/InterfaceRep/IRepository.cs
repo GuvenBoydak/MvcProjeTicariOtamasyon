@@ -40,6 +40,8 @@ namespace Project.BLL.DesingPatterns.GenericRepository.InterfaceRep
         bool Any(Expression<Func<T, bool>> exp);
         T FirstOrDefault(Expression<Func<T, bool>> exp);
         object Select(Expression<Func<T, object>> exp);
+        int Count();
+        int Sum(Expression<Func<T, int>> exp);
 
         // Find Commands
 

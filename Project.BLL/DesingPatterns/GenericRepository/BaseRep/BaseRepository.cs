@@ -106,5 +106,17 @@ namespace Project.BLL.DesingPatterns.GenericRepository.BaseRep
         {
             return _db.Set<T>().Where(exp).ToList();
         }
+
+        public int Count()
+        {
+            return _db.Set<T>().Count();
+        }
+
+        public int Sum(Expression<Func<T, int>> exp)
+        {
+            return _db.Set<T>().Sum(exp);
+        }
+
+
     }
 }
