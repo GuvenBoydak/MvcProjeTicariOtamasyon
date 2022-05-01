@@ -77,5 +77,10 @@ namespace Project.UI.Controllers
 
             return View();
         }
+
+        public ActionResult SimpleTables()
+        {
+            return View();
+        }
     }
 }

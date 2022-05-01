@@ -9,7 +9,7 @@ namespace Project.ENTITIES.Concrete.Entities
     public class Product:BaseEntity
     {
         public string Name { get; set; }
-
+        public string Description { get; set; }
         public string Brand { get; set; }
         public short Stock { get; set; }
         public decimal BuyPrice { get; set; }
