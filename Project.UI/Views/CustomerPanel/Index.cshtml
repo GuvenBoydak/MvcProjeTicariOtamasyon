@@ -1,0 +1,33 @@
+﻿@model CustomerVM
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Customer.cshtml";
+}
+
+<br />
+<p>Mvc5 Ticari Otamasyon Müşteri Bilgileri </p>
+
+@using (Html.BeginForm())
+{
+<table class="table table-hover" >
+    <tr>
+        <td>
+            @* @HttpContext.Current.User.Identity.Name ile sisteme giriş yapan kişinin kimlik bilgisini(email) getirdik.*@
+            <label>Mail Adres: @HttpContext.Current.User.Identity.Name</label>
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.TextBoxFor(x => x.Customer.FirstName, new { @class = "form-control" })</td>
+    </tr>
+    <tr>
+        <td>@Html.TextBoxFor(x => x.Customer.LastName, new { @class = "form-control" })</td>
+    </tr>
+    <tr>
+        <td>@Html.TextBoxFor(x => x.Customer.City, new { @class = "form-control" })</td>
+    </tr>
+    <tr>
+        <td>@Html.TextBoxFor(x => x.Customer.Password, new { @class = "form-control" })</td>
+    </tr>
+</table>
+<button class="btn btn-warning">Bilgileri Güncele</button>
+}

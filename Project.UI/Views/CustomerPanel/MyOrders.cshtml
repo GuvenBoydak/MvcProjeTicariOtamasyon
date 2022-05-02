@@ -1,0 +1,30 @@
+﻿@model CustomerVM
+@{
+    ViewBag.Title = "MyOrders";
+    Layout = "~/Views/Shared/_Customer.cshtml";
+}
+
+<br />
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <td>Ürün Adi</td>
+            <td>Adet</td>
+            <td>Fiyat</td>
+            <td>Tarih</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (SalesMovement item in Model.SalesMovements)
+        {
+            <tr>
+                <td>@item.Product.Name</td>
+                <td>@item.Quantity</td>
+                <td>@item.TotalPrice</td>
+                <td>@Convert.ToDateTime(item.CreatedDate).ToString("dd/MM/yyyy")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,35 @@
+﻿@model CustomerVM
+
+<div class="login-form login-form-left">
+    <div class="agile-row">
+        <h3>Yeni Müşteri Kaydı</h3>
+        <br />
+        <div class="login-agileits-top">
+            <div class="panel" >
+                @using (Html.BeginForm())
+                {
+                   
+                    @Html.TextBoxFor(x => x.Customer.FirstName, new { @class = "form-control",placeholder="Ad Giriniz!" })
+                    <br />
+                    
+                    @Html.TextBoxFor(x => x.Customer.LastName, new { @class = "form-control", placeholder = "Sayad Giriniz!" })
+                    <br />
+                    
+                    @Html.TextBoxFor(x => x.Customer.City, new { @class = "form-control", placeholder = "Şehir Giriniz!" })
+                    <br />
+                    
+                    @Html.TextBoxFor(x => x.Customer.Email, new { @class = "form-control", placeholder = "Email Giriniz!" })
+                    <br />
+                    
+                    @Html.TextBoxFor(x => x.Customer.Password, new { @class = "form-control", placeholder = "Şifre Giriniz!" })
+                    <br />
+                    <div class="login-check">
+                        <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i> Kuralları okudum &amp; Kabul Ediyorum</label>
+                    </div>
+                    <input type="submit" value="Kaydol">
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
