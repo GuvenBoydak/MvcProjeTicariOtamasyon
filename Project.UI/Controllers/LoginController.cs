@@ -12,9 +12,12 @@ namespace Project.UI.Controllers
     public class LoginController : Controller
     {
         CustomerManager _cManager;
+        AdminManager _aManager;
+
         public LoginController()
         {
             _cManager = new CustomerManager();
+            _aManager = new AdminManager();
         }
 
         // GET: Login
@@ -56,9 +59,33 @@ namespace Project.UI.Controllers
             {
                 return RedirectToAction("Index","Login");
             }
-
         }
 
+        public ActionResult AdminLogin()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AdminLogin(Admin admin)
+        {
+            Admin info = _aManager.GetActives().FirstOrDefault(x => x.UserName == admin.UserName && x.Password == admin.Password);
+
+            if (info!=null)
+            {
+                FormsAuthentication.SetAuthCookie(info.UserName, false);
+                Session["AdminLogin"] = info.UserName.ToString();
+
+                return RedirectToAction("Index", "Category");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Login");
+            }
+           
+
+            
+        }
 
     }
 }

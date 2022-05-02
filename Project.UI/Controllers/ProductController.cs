@@ -1,4 +1,5 @@
-﻿using Project.BLL.DesingPatterns.GenericRepository.ConcreteRep;
+﻿using PagedList;
+using Project.BLL.DesingPatterns.GenericRepository.ConcreteRep;
 using Project.BLL.ValidationRules;
 using Project.ENTITIES.Concrete.Entities;
 using Project.UI.ViewModels;
@@ -17,17 +18,17 @@ namespace Project.UI.Controllers
         public ProductController()
         {
             _pManager = new ProductManager();
-            _cManager = new CategoryManager();           
+            _cManager = new CategoryManager();
         }
 
         // GET: Product
-        public ActionResult Index()
+        public ActionResult Index(int paged = 1)
         {
             ProductVM vM = new ProductVM()
             {
-                Products = _pManager.GetActives(),
-                
+                ProductsPaged = _pManager.GetActives().ToPagedList(paged, 6),
             };
+
             return View(vM);
         }
 
@@ -78,7 +79,7 @@ namespace Project.UI.Controllers
             ProductVM vM = new ProductVM()
             {
                 Products = _pManager.GetActives(),
-                Categories=_cManager.GetActives()
+                Categories = _cManager.GetActives()
             };
             return View(vM);
         }

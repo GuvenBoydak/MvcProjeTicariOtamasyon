@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
+
 
 namespace Project.UI.Controllers
 {
@@ -21,11 +24,11 @@ namespace Project.UI.Controllers
             _cValidator = new CategoryValidator();
         }
         // GET: Category
-        public ActionResult Index()
+        public ActionResult Index(int paged=1)
         {
             CategoryVM vM = new CategoryVM()
             {
-                Categories = _cManager.GetActives()
+                CategoriesPaged = _cManager.GetActives().ToPagedList(paged, 7),
             };
             return View(vM);
         }
