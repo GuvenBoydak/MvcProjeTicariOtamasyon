@@ -62,6 +62,7 @@
     <Compile Include="Options\InvoiceMap.cs" />
     <Compile Include="Options\ProductMap.cs" />
     <Compile Include="Options\SalesMovementMap.cs" />
+    <Compile Include="Options\ToDoMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

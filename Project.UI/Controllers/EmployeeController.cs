@@ -68,6 +68,13 @@ namespace Project.UI.Controllers
             return RedirectToAction("Index");
         }
 
-
+        public ActionResult EmployeeListDetail()
+        {
+            EmployeeVM vM = new EmployeeVM()
+            {
+                Employees = _eManager.GetActives()
+            };
+            return View(vM);
+        }
     }
 }

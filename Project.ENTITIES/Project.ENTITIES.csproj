@@ -52,6 +52,7 @@
     <Compile Include="Concrete\Entities\InvoiceBody.cs" />
     <Compile Include="Concrete\Entities\Product.cs" />
     <Compile Include="Concrete\Entities\SalesMovement.cs" />
+    <Compile Include="Concrete\Entities\ToDo.cs" />
     <Compile Include="Concrete\Enums\DataStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

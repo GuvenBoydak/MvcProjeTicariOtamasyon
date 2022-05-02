@@ -143,6 +143,7 @@
     <Compile Include="Controllers\ProductDetailController.cs" />
     <Compile Include="Controllers\SalesMovementController.cs" />
     <Compile Include="Controllers\StatisticsController.cs" />
+    <Compile Include="Controllers\TodoController.cs" />
     <Compile Include="DTOs\CustomerDTO.cs" />
     <Compile Include="DTOs\EmployeeDTO.cs" />
     <Compile Include="DTOs\ProductDTO.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="ViewModels\InvoiceVM.cs" />
     <Compile Include="ViewModels\ProductVM.cs" />
     <Compile Include="ViewModels\SalesMovementVM.cs" />
+    <Compile Include="ViewModels\ToDoVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminLTE-3.0.4\.gitignore" />
@@ -2845,6 +2847,8 @@
     <Content Include="Views\Statistics\EmployeeDepartmentPartial.cshtml" />
     <Content Include="Views\Statistics\CustomerCityPartial.cshtml" />
     <Content Include="Views\Statistics\CategoryProductPartial.cshtml" />
+    <Content Include="Views\Employee\EmployeeListDetail.cshtml" />
+    <Content Include="Views\Todo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
