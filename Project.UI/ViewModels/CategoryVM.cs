@@ -1,4 +1,5 @@
 ﻿using Project.ENTITIES.Concrete.Entities;
+using Project.UI.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,7 @@ namespace Project.UI.ViewModels
     {
         public List<Category> Categories { get; set; }
         public Category Category { get; set; }
+        public List<ProductDTO> ProductDTOs { get; set; }
+        public ProductDTO ProductDTO { get; set; }
     }
 }

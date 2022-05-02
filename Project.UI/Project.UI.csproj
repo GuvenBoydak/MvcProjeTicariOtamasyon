@@ -143,6 +143,9 @@
     <Compile Include="Controllers\ProductDetailController.cs" />
     <Compile Include="Controllers\SalesMovementController.cs" />
     <Compile Include="Controllers\StatisticsController.cs" />
+    <Compile Include="DTOs\CustomerDTO.cs" />
+    <Compile Include="DTOs\EmployeeDTO.cs" />
+    <Compile Include="DTOs\ProductDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2836,6 +2839,12 @@
     <Content Include="thumber\scss\_site-navbar.scss" />
     <Content Include="Views\ProductDetail\Index.cshtml" />
     <Content Include="Views\Statistics\SimpleTables.cshtml" />
+    <Content Include="Views\Statistics\CustomerPartial.cshtml" />
+    <Content Include="Views\Statistics\ProductPartial.cshtml" />
+    <Content Include="Views\Statistics\ProductBrandPartial.cshtml" />
+    <Content Include="Views\Statistics\EmployeeDepartmentPartial.cshtml" />
+    <Content Include="Views\Statistics\CustomerCityPartial.cshtml" />
+    <Content Include="Views\Statistics\CategoryProductPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

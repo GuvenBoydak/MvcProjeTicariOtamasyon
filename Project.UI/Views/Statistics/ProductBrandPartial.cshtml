@@ -1,0 +1,77 @@
+﻿@model ProductVM
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Ürüne göre marka Tablosu</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body p-0">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 10px">#</th>
+                    <th>Marka</th>
+                    <th>Progress Bar</th>
+                    <th style="width: 40px">Toplam</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{int IndexNo = 0; }
+                @foreach (ProductDTO item in Model.ProductDTOs)
+                {
+                <tr>
+                    <td>@{IndexNo++;} @IndexNo</td>
+                    <td>@item.Brand</td>
+                    <td>
+                        @if (item.Count <= 2)
+                        {
+                        <div class="progress progress-xs">
+                            <div class="progress-bar progress-bar-striped bg-success" style="width: 55%"></div>
+                            
+                        </div>
+                        }
+                        else if (item.Count <= 4)
+                        {
+                            <div class="progress progress-xs">
+                                <div class="progress-bar progress-bar-striped" style="width: 70%"></div>
+                            </div>
+                        }
+                        else if (item.Count <= 6)
+                        {
+                            <div class="progress progress-xs progress-striped active">
+                                <div class="progress-bar progress-bar-striped bg-info" style="width: 90%"></div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        }
+                    </td>
+                    <td>
+                        @if (item.Count <= 2)
+                        {
+                            <span class="badge bg-primary">@item.Count</span>
+                        }
+                        else if (item.Count <= 4)
+                        {
+                            <span class="badge bg-warning">@item.Count</span>
+                        }
+                        else if (item.Count <= 6)
+                        {
+                            <span class="badge bg-success">@item.Count</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">@item.Count</span>
+                        }
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+

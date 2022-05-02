@@ -1,4 +1,6 @@
 ﻿using Project.BLL.DesingPatterns.GenericRepository.ConcreteRep;
+using Project.UI.DTOs;
+using Project.UI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -80,7 +82,65 @@ namespace Project.UI.Controllers
 
         public ActionResult SimpleTables()
         {
+           
             return View();
         }
+
+        public PartialViewResult CategoryProductPartial()
+        {
+            CategoryVM vM = new CategoryVM()
+            {
+                ProductDTOs = _pManager.GetActives().GroupBy(x => x.Category.CategoryName).Select(x => new ProductDTO { Category = x.Key, Count = x.Count() }).ToList()
+            };
+            return PartialView(vM);
+        }
+
+
+        public PartialViewResult CustomerCityPartial()
+        {
+            CustomerVM vM = new CustomerVM()
+            {
+                CustomerDTOs = _cManager.GetActives().GroupBy(x => x.City).Select(x => new CustomerDTO { City = x.Key, Count = x.Count() }).ToList()
+            };
+            return PartialView(vM);
+        }
+
+
+        public PartialViewResult EmployeeDepartmentPartial()
+        {
+            EmployeeVM vM = new EmployeeVM()
+            {
+                EmployeeDTOs=_eManager.GetActives().GroupBy(x=>x.Department.Name).Select(x=> new EmployeeDTO {Department=x.Key,Count=x.Count() }).ToList()
+            };
+            return PartialView(vM);
+        }
+
+        public PartialViewResult ProductBrandPartial()
+        {
+            ProductVM vM = new ProductVM()
+            {
+                ProductDTOs = _pManager.GetActives().GroupBy(x => x.Brand).Select(x => new ProductDTO { Brand = x.Key, Count = x.Count() }).ToList()
+            };
+            return PartialView(vM);
+        }
+
+        public PartialViewResult ProductPartial()
+        {
+            ProductVM vM = new ProductVM()
+            {
+                Products = _pManager.GetActives()
+            };
+            return PartialView(vM);
+        }
+
+        public PartialViewResult CustomerPartial()
+        {
+            CustomerVM vM = new CustomerVM()
+            {
+                Customers=_cManager.GetActives()
+            };
+            return PartialView(vM);
+        }
+       
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Project.ENTITIES.Concrete.Entities;
+using Project.UI.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace Project.UI.ViewModels
         public List<Employee> Employees { get; set; }
         public Customer Customer { get; set; }
         public int ID { get; set; }
+        public List<CustomerDTO> CustomerDTOs { get; set; }
+        public CustomerDTO CustomerDTO { get; set; }
 
     }
 }

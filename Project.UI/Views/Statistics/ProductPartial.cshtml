@@ -1,0 +1,44 @@
+﻿@model ProductVM
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Ürünler Tablosu</h3>
+
+
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0" style="height: 300px;">
+                <table class="table table-hover text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Ürüm Ad</th>
+                            <th>Marka</th>
+                            <th>Stok</th>
+                            <th>Alış Fiyat</th>
+                            <th>Satış Fiyat</th>
+                            <th>Açıklama</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Product item in Model.Products)
+                        {
+                            <tr>
+                                <td>@item.ID</td>
+                                <td>@item.Name</td>
+                                <td>@item.Brand</td>
+                                <td>@item.Stock</td>
+                                <td>@item.BuyPrice ₺</td>
+                                <td>@item.SellPrice ₺</td>
+                                <td>@item.Description</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
