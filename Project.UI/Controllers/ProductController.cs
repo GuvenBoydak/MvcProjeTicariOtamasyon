@@ -15,10 +15,14 @@ namespace Project.UI.Controllers
     {
         ProductManager _pManager;
         CategoryManager _cManager;
+        EmployeeManager _eManager;
+        SalesMovementManager _sManager;
         public ProductController()
         {
             _pManager = new ProductManager();
             _cManager = new CategoryManager();
+            _eManager = new EmployeeManager();
+            _sManager = new SalesMovementManager();
         }
 
         // GET: Product
@@ -84,6 +88,26 @@ namespace Project.UI.Controllers
             return View(vM);
         }
 
+
+        public ActionResult SellProduct(int id)
+        {
+            ProductVM vM = new ProductVM()
+            {
+                Employees = _eManager.GetActives()
+            };
+
+            int productID= _pManager.Find(id).ID;
+            ViewBag.ProductID =productID;
+
+            return View(vM);
+        }
+
+        [HttpPost]
+        public ActionResult SellProduct(SalesMovement salesMovement)
+        {
+            _sManager.Add(salesMovement);
+            return RedirectToAction("Index","SalesMovement");
+        }
 
     }
 }

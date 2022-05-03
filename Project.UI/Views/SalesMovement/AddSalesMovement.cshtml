@@ -15,10 +15,10 @@
     <br />
     @Html.LabelFor(x => x.Customers);
 
-    var staffList = Model.Customers.Select(s => new { Value = s.ID, Text = $"{s.FirstName} {s.LastName}" });
-    SelectList staffSelect = new SelectList(staffList, "Value", "Text");
+    var customerList = Model.Customers.Select(s => new { Value = s.ID, Text = $"{s.FirstName} {s.LastName}" });
+    SelectList customerSelect = new SelectList(customerList, "Value", "Text");
 
-    @Html.DropDownListFor(m => m.SalesMovement.CustomerID, staffSelect, "", new { @class = "form-control" })
+    @Html.DropDownListFor(m => m.SalesMovement.CustomerID, customerSelect, "", new { @class = "form-control" })
 
     <br />
     @Html.LabelFor(x => x.Employees);
