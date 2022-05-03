@@ -25,7 +25,7 @@ namespace Project.UI.Controllers
         {
             InvoiceVM vM = new InvoiceVM()
             {
-                Invoices = _iManager.GetActives()
+                Invoices = _iManager.GetActives(),
             };
             return View(vM);
         }

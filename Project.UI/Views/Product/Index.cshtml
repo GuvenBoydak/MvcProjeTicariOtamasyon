@@ -19,6 +19,7 @@
         <th>Kategori</th>
         <th>Sil</th>
         <th>Güncelle</th>
+        <th>Detay</th>
     </tr>
     <tbody>
         @foreach (Product item in Model.ProductsPaged)
@@ -43,12 +44,15 @@
                 <td>
                     @Html.ActionLink("Güncelle", "UpdateProduct", new { id = item.ID }, new { @class = "btn btn-success" })
                 </td>
+                <td>
+                    @Html.ActionLink("Detay", "Index","ProductDetail", new { id = item.ID }, new { @class = "btn btn-success" })
+                </td>
             </tr>
         }
     </tbody>
 
 </table>
-@Html.PagedListPager((IPagedList)Model.ProductsPaged,paged=>Url.Action("Index",new {paged }))
+@Html.PagedListPager((IPagedList)Model.ProductsPaged, paged => Url.Action("Index", new { paged }))
 @Html.ActionLink("Yeni Ürün Ekle", "AddProduct")
 
 

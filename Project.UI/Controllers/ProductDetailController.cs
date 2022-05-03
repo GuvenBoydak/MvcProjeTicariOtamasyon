@@ -17,11 +17,11 @@ namespace Project.UI.Controllers
         }
 
         // GET: ProductDetail
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
             ProductVM vM = new ProductVM()
             {
-                Products = _pManager.GetActives().Where(x => x.ID == 1).ToList()
+                Products = _pManager.GetActives().Where(x=>x.ID==id).ToList()
             };
             return View(vM);
         }

@@ -4,42 +4,116 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Faturalar</h2>
-
-<br />
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Seri No</th>
-            <th>Sıra No</th>
-            <th>Vergi Dairesi</th>
-            <th>Tarih</th>
-            <th>Saat</th>
-            <th>Teslim Eden</th>
-            <th>Teslim Alan</th>
-            <th>Toplam</th>
-            <th>Güncelle</th>
-            <th>Detaylar</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Invoice item in Model.Invoices)
-        {
+<body>
+    <br />
+    <table class="table table-hover">
+        <thead>
             <tr>
-                <td>@item.ID</td>
-                <td>@item.SerialNo</td>
-                <td>@item.InvoiceNumber</td>
-                <td>@item.TaxAuthorityNumber</td>
-                <td>@item.CreatedDate</td>
-                <td>@item.Time</td>
-                <td>@item.Submitter</td>
-                <td>@item.Receiver</td>
-                <td>@item.TotalPrice</td>
-                <td>@Html.ActionLink("Güncelle", "UpdateInvoice", new {id=item.ID },new {@class="btn btn-danger" })</td>
-                <td>@Html.ActionLink("Detaylar", "DetailsInvoice", new {id=item.ID },new {@class="btn btn-info" })</td>
+                <th>Seri Sıra No</th>
+                <th>Vergi Dairesi</th>
+                <th>Tarih</th>
+                <th>Teslim Eden</th>
+                <th>Teslim Alan</th>
+                <th>Toplam</th>
+                <th>Güncelle</th>
+                <th>Detaylar</th>
             </tr>
-        }
-    </tbody>
-</table>
-@Html.ActionLink("Fatura Ekle","AddInvoice",null,new {@class="btn btn-warning" })
+        </thead>
+        <tbody>
+            @foreach (Invoice item in Model.Invoices)
+            {
+                <tr>
+                    <td>@item.SerialNo @item.InvoiceNumber</td>
+                    <td>@item.TaxAuthorityNumber</td>
+                    <td>@Convert.ToDateTime(@item.CreatedDate).ToString("dd-MM-yyyy") @Convert.ToDateTime(item.Time).ToString("HH:mm")</td>
+                    <td>@item.Submitter</td>
+                    <td>@item.Receiver</td>
+                    <td>@item.TotalPrice ₺</td>
+                    <td>@Html.ActionLink("Güncelle", "UpdateInvoice", new { id = item.ID }, new { @class = "btn btn-danger" })</td>
+                    <td>@Html.ActionLink("Detaylar", "DetailsInvoice", new { id = item.ID }, new { @class = "btn btn-primary" })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a href="/AddInvoice/Invoice/" class="btn btn-info" style="background-color:#692121; color:white;" data-toggle="modal" data-target="#modal1"> Yeni Fatura</a>
+
+    <div class="modal" id="modal1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <br />
+                    @using (Html.BeginForm())
+                    {
+                        @Html.LabelFor(x => x.Invoice.SerialNo)
+                        @Html.TextBoxFor(x => x.Invoice.SerialNo, new { @class = "form-control" })
+
+                        @Html.LabelFor(x => x.Invoice.InvoiceNumber)
+                        @Html.TextBoxFor(x => x.Invoice.InvoiceNumber, new { @class = "form-control" })
+
+                        @Html.LabelFor(x => x.Invoice.TaxAuthorityNumber)
+                        @Html.TextBoxFor(x => x.Invoice.TaxAuthorityNumber, new { @class = "form-control" })
+
+                        @Html.LabelFor(x => x.Invoice.CreatedDate)
+                        @Html.TextBoxFor(x => x.Invoice.CreatedDate, new { @class = "form-control" })
+
+                        @Html.LabelFor(x => x.Invoice.Time)
+                        @Html.TextBoxFor(x => x.Invoice.Time, new { @class = "form-control" })
+
+                        @Html.LabelFor(x => x.Invoice.Submitter)
+                        @Html.TextBoxFor(x => x.Invoice.Submitter, new { @class = "form-control" })
+
+                        @Html.LabelFor(x => x.Invoice.Receiver)
+                        @Html.TextBoxFor(x => x.Invoice.Receiver, new { @class = "form-control" })
+                        <br />
+                        <button class="btn btn-default" style="background-color:yellowgreen">Ekle</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>

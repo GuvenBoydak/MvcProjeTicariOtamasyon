@@ -68,7 +68,7 @@ namespace Project.UI.Controllers
             string MoneyInTheSafe = _sManager.GetActives().Sum(x => x.TotalPrice).ToString();
             ViewBag.MoneyInTheSafe = MoneyInTheSafe;
 
-            string SalesToday = _sManager.GetActives().Count(x => x.CreatedDate == DateTime.Today).ToString();
+            string SalesToday = _sManager.GetActives().Where(x => x.CreatedDate == DateTime.Today).Sum(x => (decimal?)x.TotalPrice).ToString();
             ViewBag.SalesToday = SalesToday;
 
             string MoneyInTheSafeToday = _sManager.Where(x => x.CreatedDate == DateTime.Today).Sum(x => x.TotalPrice).ToString();

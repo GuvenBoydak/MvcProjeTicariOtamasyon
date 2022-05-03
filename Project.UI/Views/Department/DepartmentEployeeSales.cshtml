@@ -12,25 +12,23 @@
 <br />
 <table class="table table-hover">
     <tr>
-        <th>ID</th>
         <th>Urun</th>
         <th>Musteri</th>
-        <th>Fiyat</th>
+        <th>Fiyat ₺</th>
         <th>Adet</th>
-        <th>Toplam</th>
+        <th>Toplam ₺</th>
         <th>Tarih</th>
     </tr>
     <tbody>
         @foreach (SalesMovement item in Model.SalesMovements)
         {
             <tr>
-                <td>@item.ID</td>
                 <td>@item.Product.Name</td>
                 <td>@item.Customer.FirstName  @item.Customer.LastName</td>
                 <td>@item.Price</td>
                 <td>@item.Quantity</td>
                 <td>@item.TotalPrice</td>
-                <td>@item.Date</td>
+                <td>@item.CreatedDate</td>
                 <td>@Html.ActionLink("Yazdır","#",null,new { @class="btn btn-success"})</td>
                 
             </tr>

@@ -7,7 +7,7 @@
 <h2>Personel Ekle</h2>
 <br />
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("AddEmployee", "Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.LabelFor(x => x.Employee.FirstName);
     @Html.TextBoxFor(x => x.Employee.FirstName, new { @class = "form-control" });
@@ -17,10 +17,19 @@
     @Html.TextBoxFor(x => x.Employee.LastName, new { @class = "form-control" });
     <br />
 
-    @Html.LabelFor(x => x.Employee.Image);
-    @Html.TextBoxFor(x => x.Employee.Image, new { @class = "form-control" });
+    @Html.LabelFor(x => x.Employee.Email);
+    @Html.TextBoxFor(x => x.Employee.Email, new { @class = "form-control" });
     <br />
 
+    @Html.LabelFor(x => x.Employee.Phone);
+    @Html.TextBoxFor(x => x.Employee.Phone, new { @class = "form-control" });
+    <br />
+
+    @Html.LabelFor(x => x.Employee.Image);
+    <br />
+    <input type="file" name="Image " />
+    <br />
+    <br />
     @Html.LabelFor(x => x.Department.Name);
     @Html.DropDownListFor(x => x.Employee.DepartmentID, new SelectList(Model.Departments, "ID", "Name"), "Lütfen Seciniz", new { @class = "form-control" })
     <br />

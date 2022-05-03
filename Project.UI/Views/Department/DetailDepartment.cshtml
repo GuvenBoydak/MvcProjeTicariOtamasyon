@@ -15,20 +15,14 @@
 <br />
 <table class="table table-hover">
     <tr>
-        <th>ID</th>
-        <th>Personel Adi</th>
-        <th>Personel Soyadi</th>
-        <th>Personel Gorsel</th>
-        <th colspan="1" style="text-align:center;">İşlemler</th>
+        <th>Personel Ado Soyadı</th>
+        <th>Satışlar</th>
     </tr>
     <tbody>
         @foreach (Employee item in Model.Employees)
         {
             <tr>
-                <td>@item.ID</td>
-                <td>@item.FirstName</td>
-                <td>@item.LastName</td>
-                <td>@item.Image</td>
+                <td>@item.FirstName @item.LastName</td>
                 <td>
                     @Html.ActionLink("Satislar", "DepartmentEployeeSales", new {id=item.ID },new { @class = "btn btn-danger" })
                 </td>

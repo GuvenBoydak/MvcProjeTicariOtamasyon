@@ -7,18 +7,18 @@
 <br />
 <table class="table table-hover">
     <tr>
-        <th>ID</th>
         <th> Adi</th>
         <th> Soyadi</th>
         <th> Sehir</th>
         <th> Email</th>
-        <th colspan="3" style="text-align:center;">İşlemler</th>
+        <th> Sil<th>
+        <th> Güncelle<th>
+        <th> Satış Geçmişi<th>
     </tr>
     <tbody>
         @foreach (Customer item in Model.Customers)
         {
             <tr>
-                <td>@item.ID</td>
                 <td>@item.FirstName</td>
                 <td>@item.LastName</td>
                 <td>@item.City</td>

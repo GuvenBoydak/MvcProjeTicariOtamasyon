@@ -11,12 +11,11 @@
 <br />
 <table class="table table-hover">
     <tr>
-        <th>ID</th>
         <th>Ürün</th>
         <th>Personel</th>
-        <th>Fiyat</th>
+        <th>Fiyat ₺</th>
         <th>Adet</th>
-        <th>Toplam</th>
+        <th>Toplam ₺</th>
         <th>Tarih</th>
         <th>Yazdır</th>
     </tr>
@@ -24,13 +23,12 @@
         @foreach (SalesMovement item in Model.SalesMovements)
         {
             <tr>
-                <td>@item.ID</td>
                 <td>@item.Product.Name</td>
                 <td>@item.Employee.FirstName @item.Employee.LastName</td>
                 <td>@item.Price</td>
                 <td>@item.Quantity</td>
                 <td>@item.TotalPrice</td>
-                <td>@item.Date</td>
+                <td>@item.CreatedDate</td>
                 <td>
                     @Html.ActionLink("Yazdır", "DepartmentEployeeSales", new { id = item.ID }, new { @class = "btn btn-danger" })
                 </td>
