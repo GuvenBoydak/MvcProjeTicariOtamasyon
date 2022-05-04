@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+<br />
+@using (Html.BeginForm())
+{
+    <input type="text" name="trackingCode"/>
+    <input type="submit" value="QR Oluştur"/>
+}
+<br />
+@if (@ViewBag.QrCodeImage!=null)
+{
+    <img src="@ViewBag.QrCodeImage" alt="" style="width:400px; height:400px;"/>
+}
