@@ -60,6 +60,7 @@
     <Compile Include="Options\ExpensMap.cs" />
     <Compile Include="Options\InvoiceBodyMap.cs" />
     <Compile Include="Options\InvoiceMap.cs" />
+    <Compile Include="Options\MessageMap.cs" />
     <Compile Include="Options\ProductMap.cs" />
     <Compile Include="Options\SalesMovementMap.cs" />
     <Compile Include="Options\ShippingDetailMap.cs" />

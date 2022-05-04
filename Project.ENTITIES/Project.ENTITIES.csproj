@@ -50,6 +50,7 @@
     <Compile Include="Concrete\Entities\Expens.cs" />
     <Compile Include="Concrete\Entities\Invoice.cs" />
     <Compile Include="Concrete\Entities\InvoiceBody.cs" />
+    <Compile Include="Concrete\Entities\Message.cs" />
     <Compile Include="Concrete\Entities\Product.cs" />
     <Compile Include="Concrete\Entities\SalesMovement.cs" />
     <Compile Include="Concrete\Entities\ShippingDetail.cs" />

@@ -152,6 +152,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductDetailController.cs" />
     <Compile Include="Controllers\QRController.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="ViewModels\EmployeeVM.cs" />
     <Compile Include="ViewModels\GalleryVM.cs" />
     <Compile Include="ViewModels\InvoiceVM.cs" />
+    <Compile Include="ViewModels\MessageVM.cs" />
     <Compile Include="ViewModels\ProductVM.cs" />
     <Compile Include="ViewModels\SalesMovementVM.cs" />
     <Compile Include="ViewModels\ShippingDetailVM.cs" />
@@ -2929,11 +2931,17 @@
     <Content Include="Views\Graphic\Index.cshtml" />
     <Content Include="Views\Graphic\LineGraphic.cshtml" />
     <Content Include="Views\Graphic\ColumnGraphic.cshtml" />
+    <Content Include="Views\CustomerPanel\IncomingMessages.cshtml" />
+    <Content Include="Views\CustomerPanel\SendMessages.cshtml" />
+    <Content Include="Views\CustomerPanel\DetailMessage.cshtml" />
+    <Content Include="Views\CustomerPanel\NewMessage.cshtml" />
+    <Content Include="Views\CustomerPanel\MessageMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Image\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Message\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
