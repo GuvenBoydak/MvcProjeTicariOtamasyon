@@ -1,0 +1,67 @@
+﻿@model ShippingDetailVM
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<br />
+@*@using (Html.BeginForm("Index", "Shipping", FormMethod.Get))
+    {
+        <p>
+            Kargo Takip Numarasi: @Html.TextBox("p")
+            <input type="submit" value="Ara" />
+        </p>
+    }*@
+
+<br />
+<table class="table table-hover">
+    <tr>
+        <th>Personel</th>
+        <th>Alıcı</th>
+        <th>Tarih</th>
+        <th>Detaylar</th>
+
+    </tr>
+    <tbody>
+        @foreach (ShippingDetail item in Model.ShippingDetails)
+        {
+            <tr>
+                <td>@item.Employee</td>
+                <td>@item.Receiver</td>
+                <td>@Convert.ToDateTime(@item.CreatedDate).ToString("dd-MM-yyyy")</td>
+                <td>
+                    @Html.ActionLink("Detaylar", "ShippingTracking", new { id = item.TrackingCode }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/Shipping/AddShippingDetail/" class="btn btn-danger" data-toggle="modal" data-target="#modal1"> Yeni Kargo Girişi</a>
+
+<div class="modal" id="modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <br />
+                <form method="post" action="/Shipping/AddShippingDetail/">
+                    @Html.Label("Kargo Takip Numarasi")
+                    <input type="text" value="@ViewBag.TrackingCode" name="ShippingDetail.TrackingCode" class="form-control" readonly />
+                    <br />
+                    @Html.Label("Açıklama")
+                    @Html.TextBoxFor(x => x.ShippingDetail.Description, new { @class = "form-control" })
+                    <br />
+                    @Html.Label("Çalişsan")
+                    @Html.TextBoxFor(x => x.ShippingDetail.Employee, new { @class = "form-control" })
+                    <br />
+                    @Html.Label("Alıcı")
+                    @Html.TextBoxFor(x => x.ShippingDetail.Receiver, new { @class = "form-control" })
+                    <br />
+                    <button type="submit" class="btn btn-default" style="background-color:yellowgreen">Ekle</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+

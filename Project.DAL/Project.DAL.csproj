@@ -52,6 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Concrete\Context\ProjeContext.cs" />
+    <Compile Include="Migrations\202205040650340_ShippingAdd.cs" />
+    <Compile Include="Migrations\202205040650340_ShippingAdd.designer.cs">
+      <DependentUpon>202205040650340_ShippingAdd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -68,6 +72,11 @@
       <Project>{d77d1e2a-fd08-41ec-9d4d-52794cc3abea}</Project>
       <Name>Project.MAP</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202205040650340_ShippingAdd.resx">
+      <DependentUpon>202205040650340_ShippingAdd.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

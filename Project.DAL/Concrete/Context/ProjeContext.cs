@@ -29,6 +29,8 @@ namespace Project.DAL.Concrete.Context
             modelBuilder.Configurations.Add(new ProductMap());
             modelBuilder.Configurations.Add(new SalesMovementMap());
             modelBuilder.Configurations.Add(new ToDoMap());
+            modelBuilder.Configurations.Add(new ShippingDetailMap());
+            modelBuilder.Configurations.Add(new ShippingTrackingMap());
         }
 
         public DbSet<Product> Products { get; set; }
@@ -42,6 +44,8 @@ namespace Project.DAL.Concrete.Context
         public DbSet<InvoiceBody> InvoiceBodies { get; set; }
         public DbSet<SalesMovement> SalesMovements { get; set; }
         public DbSet<ToDo> ToDos { get; set; }
+        public DbSet<ShippingDetail> ShippingDetails { get; set; }
+        public DbSet<ShippingTracking> ShippingTrackings { get; set; }
 
     }
 }

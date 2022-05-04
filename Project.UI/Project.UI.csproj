@@ -151,6 +151,7 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductDetailController.cs" />
     <Compile Include="Controllers\SalesMovementController.cs" />
+    <Compile Include="Controllers\ShippingController.cs" />
     <Compile Include="Controllers\StatisticsController.cs" />
     <Compile Include="Controllers\TodoController.cs" />
     <Compile Include="DTOs\CustomerDTO.cs" />
@@ -168,6 +169,7 @@
     <Compile Include="ViewModels\InvoiceVM.cs" />
     <Compile Include="ViewModels\ProductVM.cs" />
     <Compile Include="ViewModels\SalesMovementVM.cs" />
+    <Compile Include="ViewModels\ShippingDetailVM.cs" />
     <Compile Include="ViewModels\ToDoVM.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2915,6 +2917,9 @@
     <Content Include="Views\CustomerPanel\MyOrders.cshtml" />
     <Content Include="Views\Alerts\Index.cshtml" />
     <Content Include="Views\Product\SellProduct.cshtml" />
+    <Content Include="Views\Shipping\Index.cshtml" />
+    <Content Include="Views\Shipping\AddShippingDetail.cshtml" />
+    <Content Include="Views\Shipping\ShippingTracking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

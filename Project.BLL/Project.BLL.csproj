@@ -65,6 +65,8 @@
     <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\InvoiceManager.cs" />
     <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\ProductManager.cs" />
     <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\SalesMovementManager.cs" />
+    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\ShippingDetailManager.cs" />
+    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\ShippingTrackingManager.cs" />
     <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\ToDoManager.cs" />
     <Compile Include="DesingPatterns\GenericRepository\InterfaceRep\IRepository.cs" />
     <Compile Include="DesingPatterns\SingeltonPattern\DBTool.cs" />
