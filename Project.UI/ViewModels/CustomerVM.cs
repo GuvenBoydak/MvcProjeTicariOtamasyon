@@ -16,6 +16,8 @@ namespace Project.UI.ViewModels
         public int ID { get; set; }
         public List<CustomerDTO> CustomerDTOs { get; set; }
         public CustomerDTO CustomerDTO { get; set; }
+        public List<ShippingDetail> ShippingDetails { get; set; }
+        public List<ShippingTracking> ShippingTrackings { get; set; }
 
     }
 }

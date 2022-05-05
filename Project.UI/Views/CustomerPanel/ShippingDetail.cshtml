@@ -1,0 +1,33 @@
+﻿@model CustomerVM
+@{
+    ViewBag.Title = "ShippingDetail";
+    Layout = "~/Views/Shared/_Customer.cshtml";
+}
+
+<h2>Kargo Takip Sayfası</h2>
+<br />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Kargo Takip Kodu</th>
+            <th>Açıklama</th>
+            <th>Tarih</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{int index = 0;}
+        @foreach (ShippingTracking item in Model.ShippingTrackings)
+        {
+            <tr>
+
+                <td>@{index++;} @index </td>
+                <td>@item.TrackingCode</td>
+                <td>@item.Description</td>
+                <td>@Convert.ToDateTime(@item.CreatedDate).ToString("dd-mm-yy")</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+

@@ -17,6 +17,7 @@ namespace Project.ENTITIES.Concrete.Entities
         public int? EmployeeID { get; set; }
 
 
+
         //Relational Property
         public virtual Product Product { get; set; }
         public virtual Customer Customer { get; set; }

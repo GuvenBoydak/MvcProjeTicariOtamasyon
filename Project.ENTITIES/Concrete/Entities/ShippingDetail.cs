@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace Project.ENTITIES.Concrete.Entities
 {
-    public class ShippingDetail:BaseEntity
+    public class ShippingDetail : BaseEntity
     {
         public string Description { get; set; }
         public string TrackingCode { get; set; }
-        public string Employee { get; set; }
+        public string Sender { get; set; }
         public string Receiver { get; set; }
+
+
+
+        //Relational Property
     }
 }

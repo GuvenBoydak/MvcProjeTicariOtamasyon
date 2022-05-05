@@ -17,6 +17,7 @@ namespace Project.ENTITIES.Concrete.Entities
 
         public int? DepartmentID { get; set; }
 
+
         //Relational Property
         public virtual List<SalesMovement> SalesMovements { get; set; }
         public virtual Department Department { get; set; }

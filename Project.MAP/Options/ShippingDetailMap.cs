@@ -14,8 +14,6 @@ namespace Project.MAP.Options
             HasKey(x => x.ID);
             Property(x => x.Description).HasColumnType("nvarchar").HasMaxLength(250).IsRequired();
             Property(x => x.TrackingCode).HasColumnType("nvarchar").HasMaxLength(10).IsRequired();
-            Property(x => x.Employee).HasColumnType("nvarchar").HasMaxLength(40).IsRequired();
-            Property(x => x.Receiver).HasColumnType("nvarchar").HasMaxLength(40).IsRequired();
         }
     }
 }

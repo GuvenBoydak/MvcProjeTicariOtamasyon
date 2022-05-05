@@ -5,14 +5,7 @@
 }
 
 
-<br />
-@*@using (Html.BeginForm("Index", "Shipping", FormMethod.Get))
-    {
-        <p>
-            Kargo Takip Numarasi: @Html.TextBox("p")
-            <input type="submit" value="Ara" />
-        </p>
-    }*@
+
 
 <br />
 <table class="table table-hover">
@@ -27,7 +20,7 @@
         @foreach (ShippingDetail item in Model.ShippingDetails)
         {
             <tr>
-                <td>@item.Employee</td>
+                <td>@item.Sender</td>
                 <td>@item.Receiver</td>
                 <td>@Convert.ToDateTime(@item.CreatedDate).ToString("dd-MM-yyyy")</td>
                 <td>
@@ -52,7 +45,7 @@
                     @Html.TextBoxFor(x => x.ShippingDetail.Description, new { @class = "form-control" })
                     <br />
                     @Html.Label("Çalişsan")
-                    @Html.TextBoxFor(x => x.ShippingDetail.Employee, new { @class = "form-control" })
+                    @Html.TextBoxFor(x => x.ShippingDetail.Sender, new { @class = "form-control" })
                     <br />
                     @Html.Label("Alıcı")
                     @Html.TextBoxFor(x => x.ShippingDetail.Receiver, new { @class = "form-control" })

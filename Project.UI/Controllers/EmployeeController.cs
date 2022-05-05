@@ -53,11 +53,11 @@ namespace Project.UI.Controllers
                 //istekde tutmuş oldugum 0 indexli doysa ismini aldık uzantı olarak  degişkene atadık.
                 string extension = Path.GetExtension(Request.Files[0].FileName);
                 //Degişkene "~/Image/" + filesName + extension; kaydedilen degeri atadık.
-                string road = "~/Image/" + filesName + extension;
+                string road = "/Imagee/" + filesName + extension;
                 //İstekde tutuş oldugum 0 indexli degeri road(kaydedilecek yer) e kaydediyoruz.
                 Request.Files[0].SaveAs(Server.MapPath(road));
                 //Personel görseline veri tabanına kaydelicek degeri atadik.
-                employee.Image= "~/Image/" + filesName + extension;
+                employee.Image= "/Imagee/" + filesName + extension;
             }
             _eManager.Add(employee);
             return RedirectToAction("Index");
@@ -83,11 +83,11 @@ namespace Project.UI.Controllers
                 //istekde tutmuş oldugum 0 indexli doysa ismini aldık uzantı olarak  degişkene atadık.
                 string extension = Path.GetExtension(Request.Files[0].FileName);
                 //Degişkene "~/Image/" + filesName + extension; kaydedilen degeri atadık.
-                string road = "~/Image/" + filesName + extension;
+                string road = "/Imagee/" + filesName + extension;
                 //İstekde tutuş oldugum 0 indexli degeri road(kaydedilecek yer) e kaydediyoruz.
                 Request.Files[0].SaveAs(Server.MapPath(road));
                 //Personel görseline veri tabanına kaydelicek degeri atadik.
-                employee.Image = "~/Image/" + filesName + extension;
+                employee.Image = "/Imagee/" + filesName + extension;
             }
             _eManager.Update(employee);
 

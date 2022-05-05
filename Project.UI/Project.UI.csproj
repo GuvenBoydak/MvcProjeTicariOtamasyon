@@ -2684,6 +2684,7 @@
     <Content Include="AdminLTE-3.0.4\plugins\sweetalert2-theme-bootstrap-4\bootstrap-4.scss" />
     <Content Include="AdminLTE-3.0.4\plugins\toastr\toastr.js.map" />
     <Content Include="AdminLTE-3.0.4\README.md" />
+    <Content Include="Imagee\happy-brunette-woman-holding-copyspace-palm-looking-camera-gray_171337-1002.webp" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -2936,10 +2937,11 @@
     <Content Include="Views\CustomerPanel\DetailMessage.cshtml" />
     <Content Include="Views\CustomerPanel\NewMessage.cshtml" />
     <Content Include="Views\CustomerPanel\MessageMenu.cshtml" />
+    <Content Include="Views\CustomerPanel\ShippingTracking.cshtml" />
+    <Content Include="Views\CustomerPanel\ShippingDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Image\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Message\" />
   </ItemGroup>
