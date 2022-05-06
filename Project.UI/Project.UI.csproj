@@ -147,6 +147,7 @@
     <Compile Include="Controllers\CustomerPanelController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\GraphicController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -2944,6 +2945,11 @@
     <Content Include="Views\CustomerPanel\ShippingDetail.cshtml" />
     <Content Include="Views\CustomerPanel\Settings.cshtml" />
     <Content Include="Views\CustomerPanel\Announcements.cshtml" />
+    <Content Include="Views\Error\PageError.cshtml" />
+    <Content Include="Views\Error\Page403.cshtml" />
+    <Content Include="Views\Error\Page500.cshtml" />
+    <Content Include="Views\Error\Page400.cshtml" />
+    <Content Include="Views\Error\Page404.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

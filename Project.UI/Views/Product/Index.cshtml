@@ -56,7 +56,11 @@
     </tbody>
 
 </table>
-@Html.PagedListPager((IPagedList)Model.ProductsPaged, paged => Url.Action("Index", new { paged }))
+@Html.PagedListPager((IPagedList)Model.ProductsPaged, paged => Url.Action("Index", new { paged }), new PagedListRenderOptions
+{
+    LiElementClasses = new List<string> { "page-link" }
+})
+
 @Html.ActionLink("Yeni Ürün Ekle", "AddProduct")
 
 

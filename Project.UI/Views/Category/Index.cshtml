@@ -26,6 +26,9 @@
             </tr>
         }
 </table>
-@Html.PagedListPager((IPagedList)Model.CategoriesPaged, paged => Url.Action("Index",new { paged }))
+@Html.PagedListPager((IPagedList)Model.CategoriesPaged, paged => Url.Action("Index",new { paged }),new PagedListRenderOptions 
+{
+    LiElementClasses=new List<string> {"page-link"}
+})
 <a href="/Category/AddCategory" class="btn btn-primary">Kategori Ekle</a>
 
