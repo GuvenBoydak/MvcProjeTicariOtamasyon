@@ -18,6 +18,7 @@ namespace Project.UI.ViewModels
         public CustomerDTO CustomerDTO { get; set; }
         public List<ShippingDetail> ShippingDetails { get; set; }
         public List<ShippingTracking> ShippingTrackings { get; set; }
+        public List<Message> Messages { get; set; }
 
     }
 }

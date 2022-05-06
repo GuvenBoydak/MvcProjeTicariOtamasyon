@@ -223,6 +223,7 @@
     <Content Include="AdminLTE-3.0.4\dist\img\boxed-bg.png" />
     <Content Include="AdminLTE-3.0.4\dist\img\credit\american-express.png" />
     <Content Include="AdminLTE-3.0.4\dist\img\credit\cirrus.png" />
+    <Content Include="AdminLTE-3.0.4\dist\img\kisspng-customer-service-business-customer-experience-5ae0f592136b71.6604322315246923700796.jpg" />
     <Content Include="AdminLTE-3.0.4\dist\img\credit\mastercard.png" />
     <Content Include="AdminLTE-3.0.4\dist\img\credit\mestro.png" />
     <Content Include="AdminLTE-3.0.4\dist\img\credit\paypal.png" />
@@ -230,6 +231,8 @@
     <Content Include="AdminLTE-3.0.4\dist\img\credit\visa.png" />
     <Content Include="AdminLTE-3.0.4\dist\img\default-150x150.png" />
     <Content Include="AdminLTE-3.0.4\dist\img\icons.png" />
+    <Content Include="AdminLTE-3.0.4\dist\img\Mesaj.png" />
+    <Content Include="AdminLTE-3.0.4\dist\img\msj.png" />
     <Content Include="AdminLTE-3.0.4\dist\img\photo1.png" />
     <Content Include="AdminLTE-3.0.4\dist\img\photo2.png" />
     <Content Include="AdminLTE-3.0.4\dist\img\photo3.jpg" />
@@ -2939,6 +2942,8 @@
     <Content Include="Views\CustomerPanel\MessageMenu.cshtml" />
     <Content Include="Views\CustomerPanel\ShippingTracking.cshtml" />
     <Content Include="Views\CustomerPanel\ShippingDetail.cshtml" />
+    <Content Include="Views\CustomerPanel\Settings.cshtml" />
+    <Content Include="Views\CustomerPanel\Announcements.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

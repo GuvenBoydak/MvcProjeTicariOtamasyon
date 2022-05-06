@@ -10,7 +10,7 @@
 
 @using (Html.BeginForm())
 {
-    @Html.HiddenFor(x=>x.Customer.ID);
+    @Html.HiddenFor(x => x.Customer.ID);
     @Html.LabelFor(x => x.Customer.FirstName);
     @Html.TextBoxFor(x => x.Customer.FirstName, new { @class = "form-control" });
     @Html.ValidationMessage("FirstName", "", new { @style = "color:red" })
@@ -27,6 +27,8 @@
     @Html.TextBoxFor(x => x.Customer.City, new { @class = "form-control" });
     @Html.ValidationMessage("City", "", new { @style = "color:red" })
     <br />
+    @Html.TextBoxFor(x => x.Customer.Password, new { @class = "form-control" });
+
 
     <button class="btn btn-danger" style="background-color:yellowgreen">Güncelle</button>
 }

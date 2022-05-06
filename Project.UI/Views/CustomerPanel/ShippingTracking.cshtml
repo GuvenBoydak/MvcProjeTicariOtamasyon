@@ -5,6 +5,16 @@
 }
 
 <h2>ShippingTracking</h2>
+<br />
+@using (Html.BeginForm("ShippingTracking", "CustomerPanel", FormMethod.Post))
+{
+    <p>
+        Kargo Takip Kodu:@Html.TextBox("a")
+        <input type="submit" value="Ara" />
+    </p>
+}
+
+
 
 <br />
 <table class="table table-hover">
@@ -21,6 +31,7 @@
         @{int index = 0;}
         @foreach (ShippingDetail item in Model.ShippingDetails)
         {
+
             <tr>
                 <td>@{index++;} @index</td>
                 <td>@item.Sender</td>

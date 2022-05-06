@@ -32,11 +32,25 @@ namespace Project.UI.Controllers
         public ActionResult Index()
         {
             string email = (string)Session["Login"];
+            ViewBag.Email = email;
             CustomerVM vM = new CustomerVM()
             {
-                Customer = _cManager.GetActives().FirstOrDefault(x => x.Email == email)
+                Customers = _cManager.GetActives().Where(x => x.Email == email).ToList(),
+                Messages=_mManager.GetActives().Where(x=>x.Receiver==email).ToList()              
             };
-            ViewBag.Email = email;
+            int mailId = _cManager.GetActives().Where(x => x.Email == email).Select(x => x.ID).FirstOrDefault();
+
+            int totalSales = _sManager.GetActives().Where(x => x.CustomerID == mailId).Count();
+            ViewBag.TotalSales = totalSales;
+
+            decimal totalAmount = _sManager.GetActives().Where(x => x.CustomerID == mailId).Sum(x => x.TotalPrice);
+            ViewBag.TotalAmount = totalAmount;
+
+            int totalOrderQuantity = _sManager.GetActives().Where(x => x.CustomerID == mailId).Sum(x => x.Quantity);
+            ViewBag.TotalOrderQuantity = totalOrderQuantity;
+
+            string nameSurname = _cManager.GetActives().Where(x => x.Email == email).Select(x => x.FirstName + " " + x.LastName).FirstOrDefault();
+            ViewBag.NameSurname = nameSurname;
             return View(vM);
         }
 
@@ -138,20 +152,27 @@ namespace Project.UI.Controllers
             return RedirectToAction("");
         }
 
-        public ActionResult ShippingTracking()
+        public ActionResult ShippingTracking(string a)
         {
             //Refactor Edilecek!!!!
             string email = (string)Session["Login"];
-            string a = _cManager.GetActives().Where(x => x.Email == email).Select(x => x.FirstName).FirstOrDefault();
-            string b = _cManager.GetActives().Where(x => x.Email == email).Select(x => x.LastName).FirstOrDefault();
-            string c = a + " " + b;
+            //string a = _cManager.GetActives().Where(x => x.Email == email).Select(x => x.FirstName).FirstOrDefault();
+            //string b = _cManager.GetActives().Where(x => x.Email == email).Select(x => x.LastName).FirstOrDefault();
+            //string c = a + " " + b;
 
-            CustomerVM vM = new CustomerVM()
+            if (a!=null)
             {
-                ShippingDetails = _sDManager.GetActives().Where(x => x.Receiver == c).ToList(),
-
-            };
-            return View(vM);
+                CustomerVM vM = new CustomerVM()
+                {
+                    ShippingTrackings = _stManager.GetActives().Where(x => x.TrackingCode.Contains(a)).ToList(),
+                };
+                return View(vM);
+            }
+            else
+            {
+                return View();
+            }
+            
         }
 
 
@@ -170,6 +191,36 @@ namespace Project.UI.Controllers
             Session.Abandon(); //Oturumu var olan Sessionu temizler.
             return RedirectToAction("Index","Login");
         }
+
+        public PartialViewResult Settings()
+        {
+            string email = (string)Session["Login"];
+            int customerID = _cManager.GetActives().Where(x => x.Email == email).Select(x => x.ID).FirstOrDefault();
+            CustomerVM vM = new CustomerVM()
+            {
+                Customer = _cManager.Find(customerID)
+            };
+            return PartialView(vM);
+        }
+
+        public PartialViewResult Announcements()
+        {
+            string email = (string)Session["Login"];
+
+            CustomerVM vM = new CustomerVM()
+            {
+                Messages = _mManager.GetActives().Where(x => x.Sender == "admin").ToList()
+            };
+            return PartialView(vM);
+        }
+
+        public ActionResult UpdateCustomerPanel(Customer customer)
+        {
+            _cManager.Update(customer);
+            return RedirectToAction("Index");
+        }
+
+
 
     }
 }
