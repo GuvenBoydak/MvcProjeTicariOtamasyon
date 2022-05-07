@@ -36,6 +36,7 @@ namespace Project.UI.Controllers
             return View(vM);
         }
 
+        [Authorize(Roles ="A")] //Yetkisi A ise Bu Controller a erişim saglıya bilir sadece.
         public ActionResult AddDepartment()
         {
             return View();

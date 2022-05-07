@@ -46,26 +46,29 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">İşlemler</div>
-                        <a class="nav-link" href="/Category/Index/">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Kategoriler
-                        </a>
-                        <a class="nav-link" href="/Product/Index/">
-                            <div class="sb-nav-link-icon"><i class="fas fa-flask"></i></div>
-                            Ürünler
-                        </a>
-                        <a class="nav-link" href="/Department/Index/">
-                            <div class="sb-nav-link-icon"><i class="fas fa-indent"></i></div>
-                            Departmanlar
-                        </a>
-                        <a class="nav-link" href="/Customer/Index/">
-                            <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
-                            Cariler
-                        </a>
-                        <a class="nav-link" href="/Employee/EmployeeListDetail/">
-                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
-                            Personeller
-                        </a>
+                        @if (User.IsInRole("A"))
+                        {
+                            <a class="nav-link" href="/Category/Index/">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Kategoriler
+                            </a>
+                            <a class="nav-link" href="/Product/Index/">
+                                <div class="sb-nav-link-icon"><i class="fas fa-flask"></i></div>
+                                Ürünler
+                            </a>
+                            <a class="nav-link" href="/Department/Index/">
+                                <div class="sb-nav-link-icon"><i class="fas fa-indent"></i></div>
+                                Departmanlar
+                            </a>
+                            <a class="nav-link" href="/Customer/Index/">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                                Cariler
+                            </a>
+                            <a class="nav-link" href="/Employee/EmployeeListDetail/">
+                                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                                Personeller
+                            </a>
+                        }
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-line"></i></div>
                             Grafikler
@@ -87,33 +90,32 @@
                             </nav>
                         </div>
                         <div class="sb-sidenav-menu-heading">Rapor & Fatura</div>
-                        <a class="nav-link" href="/SalesMovement/Index/">
-                            <div class="sb-nav-link-icon"><i class="fas fa-taxi"></i></div>
-                            Satış Hareketleri
-                        </a>
-                        <a class="nav-link" href="/Invoice/Index/">
-                            <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
-                            Faturalar
-                        </a>
-                        <a class="nav-link" href="/Invoice/Index/">
-                            <div class="sb-nav-link-icon"><i class="fas fa-procedures"></i></div>
-                            Dinamik Faturalar
-                        </a>
-                        <a class="nav-link" href="index.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-spinner"></i></div>
-                            Giderler
-                        </a>
-                        <a class="nav-link" href="/Shipping/Index/">
-                            <div class="sb-nav-link-icon"><i class="fas fa-gift"></i></div>
-                            Kargolar
-                        </a>
+                        @if (User.IsInRole("A"))
+                        {
+                            <a class="nav-link" href="/SalesMovement/Index/">
+                                <div class="sb-nav-link-icon"><i class="fas fa-taxi"></i></div>
+                                Satış Hareketleri
+                            </a>
+                            <a class="nav-link" href="/Invoice/Index/">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+                                Faturalar
+                            </a>
+                            <a class="nav-link" href="/Invoice/Index/">
+                                <div class="sb-nav-link-icon"><i class="fas fa-procedures"></i></div>
+                                Dinamik Faturalar
+                            </a>
+                            <a class="nav-link" href="index.html">
+                                <div class="sb-nav-link-icon"><i class="fas fa-spinner"></i></div>
+                                Giderler
+                            </a>
+                            <a class="nav-link" href="/Shipping/Index/">
+                                <div class="sb-nav-link-icon"><i class="fas fa-gift"></i></div>
+                                Kargolar
+                            </a>
+                        }
                         <a class="nav-link" href="/Product/ProductList/">
                             <div class="sb-nav-link-icon"><i class="fas fa-print"></i></div>
                             Pdf ~ Excel
-                        </a>
-                        <a class="nav-link" href="/Alerts/Index/">
-                            <div class="sb-nav-link-icon"><i class="fas fa-box-open"></i></div>
-                            Alertler
                         </a>
                         <a class="nav-link" href="/Statistics/Index/">
                             <div class="sb-nav-link-icon"><i class="fas fa-laptop"></i></div>
@@ -122,10 +124,6 @@
                         <a class="nav-link" href="/Gallery/Index/">
                             <div class="sb-nav-link-icon"><i class="fas fa-camera-retro"></i></div>
                             Galeri
-                        </a>
-                        <a class="nav-link" href="/ProductDetail/Index/">
-                            <div class="sb-nav-link-icon"><i class="fas fa-apple"></i></div>
-                            Ürün Detay
                         </a>
                         <a class="nav-link" href="/Statistics/SimpleTables/">
                             <div class="sb-nav-link-icon"><i class="fas fa-car"></i></div>
