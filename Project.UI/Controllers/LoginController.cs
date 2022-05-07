@@ -9,6 +9,7 @@ using System.Web.Security;
 
 namespace Project.UI.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         CustomerManager _cManager;

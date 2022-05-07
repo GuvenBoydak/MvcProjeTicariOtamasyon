@@ -79,5 +79,47 @@ namespace Project.UI.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult DynamicInvoices()
+        {
+            InvoiceVM vM = new InvoiceVM()
+            {
+                Invoices = _iManager.GetActives(),
+                InvoiceBodies = _iBManager.GetActives()
+            };
+            return View(vM);
+        }
+
+
+        public ActionResult SaveInvoice(string serialNo,string invoiceNumber,string taxAuthorityNumber,string time,string submitter,string receiver,decimal totalPrice,DateTime createdDate, InvoiceBody[] invoiceBodies)
+        {
+
+            Invoice invoice = new Invoice()
+            {
+                SerialNo = serialNo,
+                InvoiceNumber = invoiceNumber,
+                TaxAuthorityNumber = taxAuthorityNumber,
+                Time = time,
+                Submitter = submitter,
+                Receiver = receiver,
+                TotalPrice = totalPrice,
+                CreatedDate = createdDate
+            };
+            _iManager.Add(invoice);
+
+            foreach (InvoiceBody item in invoiceBodies)
+            {
+                InvoiceBody iBody = new InvoiceBody();
+                iBody.Description = item.Description;
+                iBody.InvoiceID = invoice.ID;
+                iBody.CreatedDate = item.CreatedDate;
+                iBody.Quantity = item.Quantity;
+                iBody.UnitPrice = item.UnitPrice;
+                iBody.TotalPrice = item.TotalPrice;
+                iBody.Status = item.Status;
+                _iBManager.Add(iBody);
+            }
+
+            return Json("İşlem Başarılı", JsonRequestBehavior.AllowGet);
+        }
     }
 }

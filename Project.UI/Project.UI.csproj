@@ -2950,6 +2950,7 @@
     <Content Include="Views\Error\Page500.cshtml" />
     <Content Include="Views\Error\Page400.cshtml" />
     <Content Include="Views\Error\Page404.cshtml" />
+    <Content Include="Views\Invoice\DynamicInvoices.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
