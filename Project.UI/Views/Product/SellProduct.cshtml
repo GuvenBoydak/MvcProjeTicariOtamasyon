@@ -8,42 +8,43 @@
 
 <br />
 
-<form class="form-group" method="post">
 
-    @Html.Label("Ürün");
-    @*<input type="text" name="ProductID" value="@ViewBag.ProductID" class="form-control" readonly />*@
+    @using(Html.BeginForm("SellProduct","Product",FormMethod.Post))
+    {
+        @Html.Label("Ürün");
+        <input type="text" name="SalesMovement.ProductID" value="@ViewBag.ProductID" class="form-control" readonly />
+        <br />
 
-    @Html.TextBoxFor(x => x.SalesMovement.ProductID, new { @class = "form-control" })
-    <br />
+        @Html.Label("Personel");
+        
+            var staffList = Model.Employees.Select(s => new { Value = s.ID, Text = $"{s.FirstName} {s.LastName}" });
+            SelectList staffSelect = new SelectList(staffList, "Value", "Text");
+        
+        @Html.DropDownListFor(m => m.SalesMovement.EmployeeID, staffSelect, "", new { @class = "form-control" })
+        <br />
 
-    @Html.Label("Personel");
-    @{
-        var staffList = Model.Employees.Select(s => new { Value = s.ID, Text = $"{s.FirstName} {s.LastName}" });
-        SelectList staffSelect = new SelectList(staffList, "Value", "Text");
+        @Html.Label("Müşteri")
+        @Html.TextBoxFor(x => x.SalesMovement.CustomerID, new { @class = "form-control" })
+        <br />
+
+        @Html.Label("Adet")
+        @Html.TextBoxFor(x => x.SalesMovement.Quantity, new { @class = "form-control", id = "txtQuantity", onchange = "sum();", placeholder = "Adet Giriniz!" })
+        <br />
+
+        @Html.Label("Fiyat")
+        @Html.TextBoxFor(x => x.SalesMovement.Price, new { @class = "form-control", id = "txtPrice", onkeyup = "sum();" })
+        <br />
+
+        @Html.Label("Toplam Tutar")
+        @Html.TextBoxFor(x => x.SalesMovement.TotalPrice, new { @class = "form-control", id = "txtTotalPrice", @readonly = "readonly" })
+        <br />
+
+        <button type="submit" class="btn btn-danger" style="background-color:yellowgreen;">Satış Yap</button>
     }
-    @Html.DropDownListFor(m => m.SalesMovement.EmployeeID, staffSelect, "", new { @class = "form-control" })
-    <br />
 
-    @Html.Label("Müşteri")
-    @Html.TextBoxFor(x => x.SalesMovement.CustomerID, new { @class = "form-control" })
-    <br />
 
-    @Html.Label("Adet")
-    @Html.TextBoxFor(x => x.SalesMovement.Quantity, new { @class = "form-control", id = "txtQuantity", onchange = "sum();", placeholder = "Adet Giriniz!" })
-    @*<input type="number" class="form-control" max="10" min="0" placeholder="adet girin" id="txtQuantity" onchange="sum();" name="Quantity" />*@
-    <br />
 
-    @Html.Label("Fiyat")
-    @Html.TextBoxFor(x => x.SalesMovement.Price, new { @class = "form-control", id = "txtPrice", onkeyup = "sum();" })
-    <br />
 
-    @Html.Label("Toplam Tutar")
-    @Html.TextBoxFor(x => x.SalesMovement.TotalPrice, new { @class = "form-control", id = "txtTotalPrice", @readonly = "readonly" })
-    @*<input type="text" name="TotalPrice" value="0" class="form-control" id="txtTotalPrice" readonly />*@
-    <br />
-
-    <button class="btn btn-danger">Satış Yap</button>
-</form>
 
 
 <script>

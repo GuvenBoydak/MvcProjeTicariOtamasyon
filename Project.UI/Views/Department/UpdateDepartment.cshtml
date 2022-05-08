@@ -4,13 +4,13 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Departman Güncelle</h2>
+<h2>Departman Güncelleme Sayfası</h2>
 <br />
 
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(x => x.Department.ID);
-    @Html.LabelFor(x => x.Department.Name);
+    @Html.Label("Departman Adı");
     @Html.TextBoxFor(x => x.Department.Name, new { @class = "form-control" });
     @Html.ValidationMessage("Name", "",new {@style="color:red" });
     <br />

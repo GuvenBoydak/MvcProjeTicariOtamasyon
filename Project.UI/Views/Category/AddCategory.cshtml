@@ -7,10 +7,10 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <br />
-<h2>Yeni Kategori Sayfası</h2>
+<h2>Yeni Kategori Ekleme Sayfası</h2>
 <br />
 <form class="form-group" method="post">
-    @Html.LabelFor(x => x.Category.CategoryName)
+    @Html.Label("Kategori Adi")
     @Html.TextBoxFor(x => x.Category.CategoryName, new { @class = "form-control" })
     @Html.ValidationMessage("CategoryName", "", new { @style = "color:red" })
 
@@ -19,7 +19,7 @@
 </form>
 <script>
     $('#btn1').click(function () {
-        swal("Başarıyla Eklendi!","", "success");
+        swal("Kategori Eklendi!","", "success");
     })
 </script>
 

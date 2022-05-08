@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace Project.UI.Controllers
 {
+
     public class DepartmentController : Controller
     {
         DepartmentManager _dManager;
@@ -36,7 +37,7 @@ namespace Project.UI.Controllers
             return View(vM);
         }
 
-        [Authorize(Roles ="A")] //Yetkisi A ise Bu Controller a erişim saglıya bilir sadece.
+        
         public ActionResult AddDepartment()
         {
             return View();

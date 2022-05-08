@@ -9,6 +9,7 @@
     <table class="table table-hover">
         <thead>
             <tr>
+                <th>#</th>
                 <th>Seri Sıra No</th>
                 <th>Vergi Dairesi</th>
                 <th>Tarih</th>
@@ -20,9 +21,11 @@
             </tr>
         </thead>
         <tbody>
+            @{int index = 0;}
             @foreach (Invoice item in Model.Invoices)
             {
                 <tr>
+                    <td>@{index++;} @index </td>
                     <td>@item.SerialNo @item.InvoiceNumber</td>
                     <td>@item.TaxAuthorityNumber</td>
                     <td>@Convert.ToDateTime(@item.CreatedDate).ToString("dd-MM-yyyy") @Convert.ToDateTime(item.Time).ToString("HH:mm")</td>
@@ -35,7 +38,7 @@
             }
         </tbody>
     </table>
-    <a href="/AddInvoice/Invoice/" class="btn btn-info" style="background-color:#692121; color:white;" data-toggle="modal" data-target="#modal1"> Yeni Fatura</a>
+    <a href="/AddInvoice/Invoice/" class="btn btn-info" style="background-color:yellowgreen; color:white;" data-toggle="modal" data-target="#modal1"> Yeni Fatura</a>
 
     <div class="modal" id="modal1">
         <div class="modal-dialog">
@@ -44,25 +47,25 @@
                     <br />
                     @using (Html.BeginForm())
                     {
-                        @Html.LabelFor(x => x.Invoice.SerialNo)
+                        @Html.Label("Seri No")
                         @Html.TextBoxFor(x => x.Invoice.SerialNo, new { @class = "form-control" })
 
-                        @Html.LabelFor(x => x.Invoice.InvoiceNumber)
+                        @Html.Label("Sıra No")
                         @Html.TextBoxFor(x => x.Invoice.InvoiceNumber, new { @class = "form-control" })
 
-                        @Html.LabelFor(x => x.Invoice.TaxAuthorityNumber)
+                        @Html.Label("Vergi Dairesi")
                         @Html.TextBoxFor(x => x.Invoice.TaxAuthorityNumber, new { @class = "form-control" })
 
-                        @Html.LabelFor(x => x.Invoice.CreatedDate)
+                        @Html.Label("Tarih")
                         @Html.TextBoxFor(x => x.Invoice.CreatedDate, new { @class = "form-control" })
 
-                        @Html.LabelFor(x => x.Invoice.Time)
+                        @Html.Label("Saat")
                         @Html.TextBoxFor(x => x.Invoice.Time, new { @class = "form-control" })
 
-                        @Html.LabelFor(x => x.Invoice.Submitter)
+                        @Html.Label("Gönderen")
                         @Html.TextBoxFor(x => x.Invoice.Submitter, new { @class = "form-control" })
 
-                        @Html.LabelFor(x => x.Invoice.Receiver)
+                        @Html.Label("Alıcı")
                         @Html.TextBoxFor(x => x.Invoice.Receiver, new { @class = "form-control" })
                         <br />
                         <button class="btn btn-default" style="background-color:yellowgreen">Ekle</button>

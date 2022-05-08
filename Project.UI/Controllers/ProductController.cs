@@ -5,6 +5,7 @@ using Project.ENTITIES.Concrete.Entities;
 using Project.UI.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -50,6 +51,17 @@ namespace Project.UI.Controllers
         [HttpPost]
         public ActionResult AddProduct(Product product)
         {
+            if (Request.Files.Count > 0)//Reguest=>isteklerim arasında dosya varsa.
+            {
+                //İstekde tutmuş oldugum 0 indexli dosya ismini al ve degişkene atadık.
+                string filesName = Path.GetFileName(Request.Files[0].FileName);
+                //Degişkene "~/Image/" + filesName + extension; kaydedilen degeri atadık.
+                string road = "/Imagee/" + filesName;
+                //İstekde tutuş oldugum 0 indexli degeri road(kaydedilecek yer) e kaydediyoruz.
+                Request.Files[0].SaveAs(Server.MapPath(road));
+                //Personel görseline veri tabanına kaydelicek degeri atadik.
+                product.ProductImage = "/Imagee/" + filesName;
+            }
             _pManager.Add(product);
             return RedirectToAction("Index");
         }
@@ -68,6 +80,17 @@ namespace Project.UI.Controllers
         [HttpPost]
         public ActionResult UpdateProduct(Product product)
         {
+            if (Request.Files.Count > 0)//Reguest=>isteklerim arasında dosya varsa.
+            {
+                //İstekde tutmuş oldugum 0 indexli dosya ismini al ve degişkene atadık.
+                string filesName = Path.GetFileName(Request.Files[0].FileName);
+                //Degişkene "~/Image/" + filesName + extension; kaydedilen degeri atadık.
+                string road = "/Imagee/" + filesName;
+                //İstekde tutuş oldugum 0 indexli degeri road(kaydedilecek yer) e kaydediyoruz.
+                Request.Files[0].SaveAs(Server.MapPath(road));
+                //Personel görseline veri tabanına kaydelicek degeri atadik.
+                product.ProductImage = "/Imagee/" + filesName;
+            }
             _pManager.Update(product);
             return RedirectToAction("Index");
         }

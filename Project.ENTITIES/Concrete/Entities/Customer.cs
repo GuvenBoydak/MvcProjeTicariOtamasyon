@@ -13,7 +13,12 @@ namespace Project.ENTITIES.Concrete.Entities
         public string City { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public string Authorization { get; set; }
 
+        public Customer()
+        {
+            Authorization = "C";
+        }
 
         //Relational Property
         public virtual List<SalesMovement> SalesMovements { get; set; }

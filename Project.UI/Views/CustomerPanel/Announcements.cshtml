@@ -2,24 +2,23 @@
 
 @foreach (Message item in Model.Messages)
 {
-    <div class="timeline timeline-inverse">
-        <!-- timeline time label -->
-        <div class="time-label">
-            <span class="bg-success">
-                @item.CreatedDate.ToShortDateString()
-            </span>
-        </div>
-        <div>
-            <i class="fas fa-envelope bg-primary"></i>
-            <div class="timeline-item">
-                <span class="time"><i class="far fa-clock"></i>@item.CreatedDate.ToShortTimeString()</span>
-                <h3 class="timeline-header"><a href="#">@item.Subject</a></h3>
-                <div class="timeline-body">
-                    @item.Content
-                </div>
-
+<div class="timeline timeline-inverse">
+    <!-- timeline time label -->
+    <div class="time-label">
+        <span class="bg-success">
+            @item.CreatedDate.ToShortDateString()
+        </span>
+    </div>
+    <div>
+        <div class="timeline-item">
+            <span class="time"><i class="far fa-clock"></i>@item.CreatedDate.ToShortTimeString()</span>
+            <h3 class="timeline-header"><a href="#">@item.Subject</a></h3>
+            <div class="timeline-body">
+                @item.Content
             </div>
+
         </div>
     </div>
+</div>
 }
 

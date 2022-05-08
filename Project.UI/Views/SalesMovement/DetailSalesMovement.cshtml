@@ -4,31 +4,32 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Satış Detaylari</h2>
+<h2>Satış Detaylari Sayfası</h2>
 <br />
 <table id="tbl1" class="table table-hover">
     <tr>
-        <th>ID</th>
+        <th>#</th>
         <th>Ürün</th>
         <th>Müşteri</th>
         <th>Personel</th>
-        <th>Fiyat</th>
         <th>Adet</th>
+        <th>Fiyat</th>
         <th>Toplam</th>
         <th>Tarih</th>
     </tr>
     <tbody>
+        @{int index = 0; }
         @foreach (SalesMovement item in Model.SalesMovements)
         {
             <tr>
-                <td>@item.ID</td>
+                <td>@{index++;} @index</td>
                 <td>@item.Product.Name</td>
                 <td>@item.Customer.FirstName  @item.Customer.LastName</td>
                 <td>@item.Employee.FirstName  @item.Employee.LastName</td>
-                <td>@item.Price</td>
                 <td>@item.Quantity</td>
-                <td>@item.TotalPrice</td>
-                <td>@item.CreatedDate</td>
+                <td>@item.Price ₺</td>
+                <td>@item.TotalPrice ₺</td>
+                <td>@item.CreatedDate.ToShortDateString()</td>
             </tr>
         }
     </tbody>

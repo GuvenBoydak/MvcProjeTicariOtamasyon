@@ -8,7 +8,7 @@
 <table id="tbl1" class="table table-hover">
     <thead>
         <tr>
-            <th>ID</th>
+            <th>#</th>
             <th> Ürün</th>
             <th> Müşteri</th>
             <th> Personel</th>
@@ -21,17 +21,18 @@
         </tr>
     </thead>
     <tbody>
+        @{int index = 0; }
         @foreach (SalesMovement item in Model.SalesMovements)
         {
             <tr>
-                <td>@item.ID</td>
+                <td>@{index++;} @index</td>
                 <td>@item.Product.Name</td>
                 <td>@item.Customer.FirstName @item.Customer.LastName</td>
                 <td>@item.Employee.FirstName @item.Employee.LastName</td>
                 <td>@item.Quantity</td>
-                <td>@item.Price</td>
-                <td>@item.TotalPrice</td>
-                <td>@item.CreatedDate</td>
+                <td>@item.Price ₺</td>
+                <td>@item.TotalPrice ₺</td>
+                <td>@item.CreatedDate.ToShortDateString()</td>
                 <td>
                     @Html.ActionLink("Güncelle", "UpdateSalesMovement", new { id = item.ID }, new { @class = "btn btn-success" })
                 </td>
@@ -43,7 +44,7 @@
     </tbody>
 
 </table>
-@Html.ActionLink("Yeni Satış Ekle", "AddSalesMovement", null, new { @class = "btn btn-info" })
+@Html.ActionLink("Yeni Satış Ekle", "AddSalesMovement", null, new { @class = "btn btn-info", style = "background-color:yellowgreen"  })
 
 
 

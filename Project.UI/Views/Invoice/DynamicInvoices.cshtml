@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>DynamicInvoices</h2>
+<h2>Dinamik Fatura Sayfası</h2>
 <br />
 <br />
 <div class="panel panel-default">
@@ -48,14 +48,14 @@
                                         <tr>
                                             <td>@x.Description</td>
                                             <td>@x.Quantity</td>
-                                            <td>@x.UnitPrice</td>
-                                            <td>@x.TotalPrice</td>
+                                            <td>@x.UnitPrice ₺</td>
+                                            <td>@x.TotalPrice ₺</td>
                                         </tr>
                                         totalBill = totalBill + @Convert.ToInt32(x.TotalPrice);
                                     }
                                 </tbody>
                             </table>
-                            <span class="pull-right" style="margin-right:100px;"><strong>Fatura Toplam Tutar:  </strong> @totalBill</span>
+                            <span class="pull-right" style="margin-right:100px;"><strong>Fatura Toplam Tutar:  </strong> @totalBill ₺</span>
                         </td>
                     </tr>
                 </tbody>

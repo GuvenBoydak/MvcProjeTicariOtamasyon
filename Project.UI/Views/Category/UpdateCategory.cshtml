@@ -5,12 +5,12 @@
 }
 
 <br />
-<h2>Kategori Güncelleme</h2>
+<h2>Kategori Güncelleme Sayfası</h2>
 <br />
 @using (Html.BeginForm())
 {
     <div class="form-group">
-        @Html.LabelFor(x => x.Category.CategoryName)
+        @Html.Label("Kategori Adi")
         @Html.TextBoxFor(x => x.Category.CategoryName, new { @class = "form-control" })
         @Html.ValidationMessage("CategoryName", "", new { @style = "color:red" })
 
@@ -18,5 +18,5 @@
 
     </div>
 
-    <button class="btn btn-warning"> Güncelle</button>
+    <button class="btn btn-warning" style="background-color:yellowgreen;"> Güncelle</button>
 }

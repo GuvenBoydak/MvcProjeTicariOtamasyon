@@ -4,33 +4,38 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<h2>Departman Bilgileri</h2>
 <br />
 <table class="table table-hover">
     <tr>
-        <th>ID</th>
+        <th>#</th>
         <th>Departman Adi</th>
-        <th colspan="3" style="text-align:center;">İşlemler</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+        <th>Detay</th>
+
     </tr>
     <tbody>
+        @{int index = 0;}
         @foreach (Department item in Model.Departments)
         {
-        <tr>
-            <td>@item.ID</td>
-            <td>@item.Name</td>
-            <td>
-                @Html.ActionLink("Sil", "DeleteDepartment", new { id = item.ID }, new { @class = "btn btn-danger" })
-            </td>
-            <td>
-                @Html.ActionLink("Güncelle", "UpdateDepartment", new { id = item.ID }, new { @class = "btn btn-success" })
-            </td>
-            <td>
-                @Html.ActionLink("Departman Detay", "DetailDepartment", new { id = item.ID }, new { @class = "btn btn-warning" })
-            </td>
-        </tr>
+            <tr>
+                <td>@{index++;} @index </td>
+                <td>@item.Name</td>
+                <td>
+                    @Html.ActionLink("Sil", "DeleteDepartment", new { id = item.ID }, new { @class = "btn btn-danger" })
+                </td>
+                <td>
+                    @Html.ActionLink("Güncelle", "UpdateDepartment", new { id = item.ID }, new { @class = "btn btn-success" })
+                </td>
+                <td>
+                    @Html.ActionLink("Departman Detay", "DetailDepartment", new { id = item.ID }, new { @class = "btn btn-warning" })
+                </td>
+            </tr>
         }
     </tbody>
 
 </table>
-@Html.ActionLink("Departman Ekle", "AddDepartment",null, new { @class = "btn btn-info" })
+@Html.ActionLink("Departman Ekle", "AddDepartment", null, new { @class = "btn btn-info", style = "background-color:yellowgreen" })
 
 

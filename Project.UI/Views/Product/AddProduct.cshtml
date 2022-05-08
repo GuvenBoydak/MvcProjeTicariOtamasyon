@@ -4,35 +4,38 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Yeni Ürün Sayfası</h2>
+<h2>Yeni Ürün Ekleme Sayfası</h2>
 <br />
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("AddProduct", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.LabelFor(x => x.Product.Name);
+    @Html.Label("Ürün Adı");
     @Html.TextBoxFor(x => x.Product.Name, new { @class = "form-control" });
     <br />
-    @Html.LabelFor(x => x.Product.Brand);
+    @Html.Label("Açıklama");
+    @Html.TextBoxFor(x => x.Product.Description, new { @class = "form-control" });
+    <br />
+    @Html.Label("Marka");
     @Html.TextBoxFor(x => x.Product.Brand, new { @class = "form-control" });
     <br />
-    @Html.LabelFor(x => x.Product.Stock);
+    @Html.Label("Stok");
     @Html.TextBoxFor(x => x.Product.Stock, new { @class = "form-control" });
     <br />
-    @Html.LabelFor(x => x.Product.BuyPrice);
+    @Html.Label("Alış Fiyat");
     @Html.TextBoxFor(x => x.Product.BuyPrice, new { @class = "form-control" });
     <br />
-    @Html.LabelFor(x => x.Product.SellPrice);
+    @Html.Label("Satış Fiyat");
     @Html.TextBoxFor(x => x.Product.SellPrice, new { @class = "form-control" });
     <br />
-    @Html.LabelFor(x => x.Category);
+    @Html.Label("Ürün Kategorisi");
     @Html.DropDownListFor(x => x.Product.CategoryID, new SelectList(Model.Categories, "ID", "CategoryName"), "Lütfen Seciniz", new { @class = "form-control" })
     <br />
-    @Html.LabelFor(x => x.Product.ProductImage);
-    @Html.TextBoxFor(x => x.Product.ProductImage, new { @class = "form-control" });
+    @Html.Label("Görsel");
     <br />
-    @Html.LabelFor(x => x.Product.Status);
-    @Html.TextBoxFor(x => x.Product.Status, new { @class = "form-control" });
+    <input type="file" name="ProductImage" />
+
     <br />
-    <button class="btn btn-danger">Kaydet</button>
+
+    <button class="btn btn-danger" style="background-color:yellowgreen;">Kaydet</button>
 }
 

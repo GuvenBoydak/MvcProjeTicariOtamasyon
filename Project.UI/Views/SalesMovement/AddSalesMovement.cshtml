@@ -10,10 +10,10 @@
 
 @using (Html.BeginForm())
 {
-    @Html.LabelFor(x => x.Products);
+    @Html.Label("Ürün");
     @Html.DropDownListFor(x => x.SalesMovement.ProductID, new SelectList(Model.Products, "ID", "Name"), "Lütfen Seciniz", new { @class = "form-control" })
     <br />
-    @Html.LabelFor(x => x.Customers);
+    @Html.Label("Müşteri");
 
     var customerList = Model.Customers.Select(s => new { Value = s.ID, Text = $"{s.FirstName} {s.LastName}" });
     SelectList customerSelect = new SelectList(customerList, "Value", "Text");
@@ -21,20 +21,20 @@
     @Html.DropDownListFor(m => m.SalesMovement.CustomerID, customerSelect, "", new { @class = "form-control" })
 
     <br />
-    @Html.LabelFor(x => x.Employees);
+    @Html.Label("Çalişan");
 
     var EmployeeList = Model.Employees.Select(s => new { Value = s.ID, Text = $"{s.FirstName} {s.LastName}" });
     SelectList EmployeeSelect = new SelectList(EmployeeList, "Value", "Text");
 
     @Html.DropDownListFor(m => m.SalesMovement.EmployeeID, EmployeeSelect, "", new { @class = "form-control" })
     <br />
-    @Html.LabelFor(x => x.SalesMovement.Quantity);
+    @Html.Label("Miktar");
     @Html.TextBoxFor(x => x.SalesMovement.Quantity, new { @class = "form-control" });
     <br />
-    @Html.LabelFor(x => x.SalesMovement.Price);
+    @Html.Label("Birim Fiyat");
     @Html.TextBoxFor(x => x.SalesMovement.Price, new { @class = "form-control" });
     <br />
-    @Html.LabelFor(x => x.SalesMovement.TotalPrice);
+    @Html.Label("Toplam Fiyat");
     @Html.TextBoxFor(x => x.SalesMovement.TotalPrice, new { @class = "form-control" });
     <br />
     <button class="btn btn-danger" style="background-color:yellowgreen">Ekle</button>

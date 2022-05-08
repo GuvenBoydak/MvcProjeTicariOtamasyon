@@ -11,6 +11,7 @@
 <br />
 <table class="table table-hover">
     <tr>
+        <th>#</th>
         <th>Ürün</th>
         <th>Marka</th>
         <th>Stok</th>
@@ -23,35 +24,37 @@
         <th>Satış</th>
     </tr>
     <tbody>
+        @{int index = 0;}
         @foreach (Product item in Model.ProductsPaged)
         {
-        <tr>
-            <td>@item.Name</td>
-            <td>@item.Brand</td>
-            <td>@item.Stock</td>
-            <td>@item.BuyPrice ₺</td>
-            <td>@item.SellPrice ₺</td>
-            @if (item.Category == null)
-            {
-                <td>Kategorisi yok</td>
-            }
-            else
-            {
-                <td>@item.Category.CategoryName</td>
-            }
-            <td>
-                @Html.ActionLink("Sil", "DeleteProduct", new { id = item.ID }, new { @class = "btn btn-danger" })
-            </td>
-            <td>
-                @Html.ActionLink("Güncelle", "UpdateProduct", new { id = item.ID }, new { @class = "btn btn-success" })
-            </td>
-            <td>
-                @Html.ActionLink("Detay", "Index", "ProductDetail", new { id = item.ID }, new { @class = "btn btn-warning" })
-            </td>
-            <td>
-                @Html.ActionLink("Satış", "SellProduct", new { id = item.ID }, new { @class = "btn btn-info" })
-            </td>
-        </tr>
+            <tr>
+                <td>@{index++;} @index </td>
+                <td>@item.Name</td>
+                <td>@item.Brand</td>
+                <td>@item.Stock</td>
+                <td>@item.BuyPrice ₺</td>
+                <td>@item.SellPrice ₺</td>
+                @if (item.Category == null)
+                {
+                    <td>Kategorisi yok</td>
+                }
+                else
+                {
+                    <td>@item.Category.CategoryName</td>
+                }
+                <td>
+                    @Html.ActionLink("Sil", "DeleteProduct", new { id = item.ID }, new { @class = "btn btn-danger" })
+                </td>
+                <td>
+                    @Html.ActionLink("Güncelle", "UpdateProduct", new { id = item.ID }, new { @class = "btn btn-success" })
+                </td>
+                <td>
+                    @Html.ActionLink("Detay", "Index", "ProductDetail", new { id = item.ID }, new { @class = "btn btn-warning" })
+                </td>
+                <td>
+                    @Html.ActionLink("Satış", "SellProduct", new { id = item.ID }, new { @class = "btn btn-info" })
+                </td>
+            </tr>
         }
     </tbody>
 
@@ -61,7 +64,7 @@
     LiElementClasses = new List<string> { "page-link" }
 })
 
-@Html.ActionLink("Yeni Ürün Ekle", "AddProduct")
+@Html.ActionLink("Yeni Ürün Ekle", "AddProduct",null,new {@class="btn btn-danger", style = "background-color:yellowgreen;" })
 
 
 

@@ -209,7 +209,7 @@ namespace Project.UI.Controllers
 
             CustomerVM vM = new CustomerVM()
             {
-                Messages = _mManager.GetActives().Where(x => x.Sender == "admin").ToList()
+                Messages = _mManager.GetActives().Where(x => x.Sender.Contains("admin")).OrderByDescending(x=>x.ID).ToList()
             };
             return PartialView(vM);
         }

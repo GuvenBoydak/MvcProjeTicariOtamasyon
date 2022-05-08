@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<h2>Müşteri Bilgileri Sayfası</h2>
 <br />
 <table class="table table-hover">
     <tr>
@@ -16,25 +17,27 @@
         
     </tr>
     <tbody>
+        @{int index = 0;}
         @foreach (Customer item in Model.Customers)
         {
-            <tr>
-                <td>@item.FirstName</td>
-                <td>@item.LastName</td>
-                <td>@item.City</td>
-                <td>@item.Email</td>
-                <td>
-                    @Html.ActionLink("Sil", "DeleteCustomer", new { id = item.ID }, new { @class = "btn btn-danger" })
-                </td>
-                <td>
-                    @Html.ActionLink("Güncelle", "UpdateCustomer", new { id = item.ID }, new { @class = "btn btn-success" })
-                </td>
-                <td>
-                    @Html.ActionLink("Satış Geçmişi", "CustomerSales", new { id = item.ID }, new { @class = "btn btn-warning" })
-                </td>
-            </tr>
+        <tr>
+            <td>@{index++;} @index </td>
+            <td>@item.FirstName</td>
+            <td>@item.LastName</td>
+            <td>@item.City</td>
+            <td>@item.Email</td>
+            <td>
+                @Html.ActionLink("Sil", "DeleteCustomer", new { id = item.ID }, new { @class = "btn btn-danger" })
+            </td>
+            <td>
+                @Html.ActionLink("Güncelle", "UpdateCustomer", new { id = item.ID }, new { @class = "btn btn-success" })
+            </td>
+            <td>
+                @Html.ActionLink("Satış Geçmişi", "CustomerSales", new { id = item.ID }, new { @class = "btn btn-warning" })
+            </td>
+        </tr>
         }
     </tbody>
 
 </table>
-@Html.ActionLink("Müşteri Ekle", "AddCustomer", null, new { @class = "btn btn-info" })
+@Html.ActionLink("Müşteri Ekle", "AddCustomer", null, new { @class = "btn btn-info",style = "background-color:yellowgreen" })

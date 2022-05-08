@@ -4,29 +4,29 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Fatura Ekle</h2>
+<h2>Fatura Ekleme Sayfası</h2>
 <br />
 @using (Html.BeginForm())
 {
-    @Html.LabelFor(x => x.Invoice.SerialNo)
+    @Html.Label("Seri No")
     @Html.TextBoxFor(x => x.Invoice.SerialNo, new { @class = "form-control" })
     <br />
-    @Html.LabelFor(x => x.Invoice.InvoiceNumber)
+    @Html.Label("Sıra No")
     @Html.TextBoxFor(x => x.Invoice.InvoiceNumber, new { @class = "form-control" })
     <br />
-    @Html.LabelFor(x => x.Invoice.TaxAuthorityNumber)
+    @Html.Label("Vergi Dairesi")
     @Html.TextBoxFor(x => x.Invoice.TaxAuthorityNumber, new { @class = "form-control" })
     <br />
-    @Html.LabelFor(x => x.Invoice.CreatedDate)
+    @Html.Label("Tarih")
     @Html.TextBoxFor(x => x.Invoice.CreatedDate, new { @class = "form-control" })
     <br />
-    @Html.LabelFor(x => x.Invoice.Time)
+    @Html.Label("Saat")
     @Html.TextBoxFor(x => x.Invoice.Time, new { @class = "form-control" })
     <br />
-    @Html.LabelFor(x => x.Invoice.Submitter)
+    @Html.Label("Gönderen")
     @Html.TextBoxFor(x => x.Invoice.Submitter, new { @class = "form-control" })
     <br />
-    @Html.LabelFor(x => x.Invoice.Receiver)
+    @Html.Label("Alıcı")
     @Html.TextBoxFor(x => x.Invoice.Receiver, new { @class = "form-control" })
     <br />
     <button class="btn btn-default" style="background-color:yellowgreen">Ekle</button>

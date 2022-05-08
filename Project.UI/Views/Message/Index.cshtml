@@ -1,8 +1,8 @@
 ﻿@model MessageVM
 
 @{
-    ViewBag.Title = "SendMessages";
-    Layout = "~/Views/Shared/_Customer.cshtml";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 
@@ -41,48 +41,50 @@
     <section class="content">
         <div class="row">
 
-            @Html.Action("MessageMenu", "CustomerPanel")
+            <div class="col-md-3">
+                <a href="/Message/NewMessage/" class="btn btn-primary btn-block mb-3">Yeni Mesaj </a>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Klasorler</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+
+                        <ul class="nav nav-pills flex-column">
+                            <li class="nav-item active">
+                                <a href="/Message/IncomingMessages/" class="nav-link">
+                                    <i class="fas fa-inbox"></i> Gelen Kutusu
+                                    <span class="badge bg-primary float-right"> @ViewBag.ReceiverMessageCount</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/Message/SendMessage/" class="nav-link">
+                                    <i class="far fa-envelope"></i> Gönderilen Mesaj
+                                    <span class="badge bg-danger float-right">@ViewBag.SenderMessageCount</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="far fa-trash-alt"></i> Çöp Kutusu
+                                    <span class="badge bg-danger float-right"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
             <div class="col-md-9">
                 <div class="card card-primary card-outline">
-                    <div class="card-header">
-                        <h3 class="card-title">Gelen Kutusu</h3>
-                        <div class="card-tools">
-                            <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" placeholder="Mail Ara">
-                                <div class="input-group-append">
-                                    <div class="btn btn-primary">
-                                        <i class="fas fa-search"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="card-body p-0">
                         <div class="mailbox-controls">
-                            <!-- Check all button -->
-                            <button type="button" class="btn btn-default btn-sm checkbox-toggle">
-                                <i class="far fa-square"></i>
-                            </button>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
-                                <button type="button" class="btn btn-default btn-sm"><i class="fas fa-reply"></i></button>
-                                <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i></button>
-                            </div>
-                            <button type="button" class="btn btn-default btn-sm"><i class="fas fa-sync-alt"></i></button>
 
                             <div class="float-right">
 
-                                1-50/200
-
-                                <div class="btn-group">
-
-                                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-left"></i></button>
-
-                                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-right"></i></button>
-
-                                </div>
                             </div>
                         </div>
 
@@ -92,16 +94,10 @@
                                     @foreach (Message item in Model.Messages)
                                     {
                                         <tr>
-                                            <td>
-                                                <div class="icheck-primary">
-                                                    <input type="checkbox" value="" id="check1">
-                                                    <label for="check1"></label>
-                                                </div>
-                                            </td>
                                             <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
-                                            <td class="mailbox-name"><a href="/CustomerPanel/DetailMessage/@item.ID">@item.Receiver</a></td>
+                                            <td class="mailbox-name"><a href="/Message/DetailMessage/@item.ID">@item.Receiver</a></td>
                                             <td class="mailbox-subject">
-                                                <b>@item.Subject</b> - @item.Content.Substring(0, 5).ToString()...
+                                                <b>@item.Subject</b> - @item.Content.Substring(0, 1).ToString()...
                                             </td>
                                             <td class="mailbox-attachment"></td>
                                             <td class="mailbox-date">@item.CreatedDate.ToShortDateString()</td>
@@ -117,26 +113,6 @@
                     <!-- /.card-body -->
                     <div class="card-footer p-0">
                         <div class="mailbox-controls">
-                            <!-- Check all button -->
-                            <button type="button" class="btn btn-default btn-sm checkbox-toggle">
-                                <i class="far fa-square"></i>
-                            </button>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
-                                <button type="button" class="btn btn-default btn-sm"><i class="fas fa-reply"></i></button>
-                                <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i></button>
-                            </div>
-                            <!-- /.btn-group -->
-                            <button type="button" class="btn btn-default btn-sm"><i class="fas fa-sync-alt"></i></button>
-                            <div class="float-right">
-                                1-50/200
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-left"></i></button>
-                                    <button type="button" class="btn btn-default btn-sm"><i class="fas fa-chevron-right"></i></button>
-                                </div>
-                                <!-- /.btn-group -->
-                            </div>
-                            <!-- /.float-right -->
                         </div>
                     </div>
                 </div>
@@ -200,6 +176,8 @@
     <script src="../../dist/js/demo.js"></script>
 </body>
 </html>
+
+
 
 
 

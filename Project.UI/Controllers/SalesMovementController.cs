@@ -28,7 +28,9 @@ namespace Project.UI.Controllers
             SalesMovementVM vM = new SalesMovementVM()
             {
                 SalesMovements = _sManager.GetActives(),
-                Products=_pManager.GetActives()
+                Products=_pManager.GetActives(),
+                Customers=_cManager.GetActives()
+               
             };
             return View(vM);
         }

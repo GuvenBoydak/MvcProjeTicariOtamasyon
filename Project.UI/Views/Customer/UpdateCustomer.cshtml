@@ -11,22 +11,23 @@
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(x => x.Customer.ID);
-    @Html.LabelFor(x => x.Customer.FirstName);
+    @Html.Label("Adı");
     @Html.TextBoxFor(x => x.Customer.FirstName, new { @class = "form-control" });
     @Html.ValidationMessage("FirstName", "", new { @style = "color:red" })
     <br />
-    @Html.LabelFor(x => x.Customer.LastName);
+    @Html.Label("Soyadı");
     @Html.TextBoxFor(x => x.Customer.LastName, new { @class = "form-control" });
     @Html.ValidationMessage("LastName", "", new { @style = "color:red" })
     <br />
-    @Html.LabelFor(x => x.Customer.Email);
+    @Html.Label("E-mail");
     @Html.TextBoxFor(x => x.Customer.Email, new { @class = "form-control" });
     @Html.ValidationMessage("Email", "", new { @style = "color:red" })
     <br />
-    @Html.LabelFor(x => x.Customer.City);
+    @Html.Label("Şehir");
     @Html.TextBoxFor(x => x.Customer.City, new { @class = "form-control" });
     @Html.ValidationMessage("City", "", new { @style = "color:red" })
     <br />
+    @Html.Label("Şifre");
     @Html.TextBoxFor(x => x.Customer.Password, new { @class = "form-control" });
 
 

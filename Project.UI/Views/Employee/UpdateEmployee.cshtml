@@ -4,36 +4,36 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Personel Güncelle</h2>
+<h2>Personel Güncelleme Sayfası</h2>
 <br />
 
 @using (Html.BeginForm("UpdateEmployee", "Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(x => x.Employee.ID);
 
-    @Html.LabelFor(x => x.Employee.FirstName);
+    @Html.Label("Adı");
     @Html.TextBoxFor(x => x.Employee.FirstName, new { @class = "form-control" });
 
     <br />
-    @Html.LabelFor(x => x.Employee.LastName);
+    @Html.Label("Soyadı");
     @Html.TextBoxFor(x => x.Employee.LastName, new { @class = "form-control" });
     <br />
 
-    @Html.LabelFor(x => x.Employee.Email);
+    @Html.Label("Email");
     @Html.TextBoxFor(x => x.Employee.Email, new { @class = "form-control" });
     <br />
 
-    @Html.LabelFor(x => x.Employee.Phone);
+    @Html.Label("Telefon");
     @Html.TextBoxFor(x => x.Employee.Phone, new { @class = "form-control" });
     <br />
 
-    @Html.LabelFor(x => x.Employee.Image);
+    @Html.Label("Görsel");
     <br />
     <input type="file" name="Image " />
     <br />
     <br />
-    @Html.LabelFor(x => x.Department.Name);
-    @Html.DropDownListFor(x => x.Employee.DepartmentID, new SelectList(Model.Departments, "ID", "Name"), "Lütfen Seciniz", new { @class = "form-control" })
+    @Html.Label("Çaliştığı Departman");
+    @Html.DropDownListFor(x => x.Employee.DepartmentID, new SelectList(Model.Departments, "ID", "Name"), "Lütfen Seçiniz", new { @class = "form-control" })
     <br />
 
     <button class="btn btn-danger" style="background-color:yellowgreen">Güncelle</button>

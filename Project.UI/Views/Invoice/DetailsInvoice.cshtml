@@ -4,21 +4,24 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>DetailsInvoice</h2>
+<h2>Fatura Kalem Detay Sayfası</h2>
 <br />
 <table class="table table-hover">
     <tr>
+        <th>#</th>
         <th>Açıklama</th>
         <th>Miktar</th>
         <th>Birim Fiyat </th>
-        <th>Toplam Fiyat ₺</th>
+        <th>Toplam Fiyat </th>
         <th>Satişlar</th>
         <th>Fatura Kalem Ekle </th>
     </tr>
     <tbody>
+        @{int index = 0;}
         @foreach (InvoiceBody item in Model.InvoiceBodies)
         {
             <tr>
+                <td>@{index++;} @index </td>
                 <td>@item.Description</td>
                 <td>@item.Quantity</td>
                 <td>@item.UnitPrice ₺</td>
@@ -26,7 +29,7 @@
                 <td>
                     @Html.ActionLink("Satislar", "DepartmentEployeeSales", new { id = item.ID }, new { @class = "btn btn-danger" })
                 </td>
-                <td><a href="/AddInvoiceBody/Invoice/@item.InvoiceID" class="btn btn-info" style="background-color:#407b03; color:white;" data-toggle="modal" data-target="#modal1">Fatura Kalem Ekle</a></td>
+                <td><a href="/AddInvoiceBody/Invoice/@item.InvoiceID" class="btn btn-info" style="background-color:yellowgreen; color:white;" data-toggle="modal" data-target="#modal1">Fatura Kalem Ekle</a></td>
             </tr>
         }
     </tbody>
@@ -40,20 +43,20 @@
                 <br />
                 @using (Html.BeginForm())
                 {
-                    @Html.LabelFor(x => x.InvoiceBody.Description)
+                    @Html.Label("Açıklama")
                     @Html.TextBoxFor(x => x.InvoiceBody.Description, new { @class = "form-control" })
                     <br />
-                    @Html.LabelFor(x => x.InvoiceBody.Quantity)
+                    @Html.Label("Miktar")
                     @Html.TextBoxFor(x => x.InvoiceBody.Quantity, new { @class = "form-control" })
                     <br />
-                    @Html.LabelFor(x => x.InvoiceBody.UnitPrice)
+                    @Html.Label("Birim Fiyat")
                     @Html.TextBoxFor(x => x.InvoiceBody.UnitPrice, new { @class = "form-control" })
                     <br />
-                    @Html.LabelFor(x => x.InvoiceBody.TotalPrice)
+                    @Html.Label("Toplam Fiyat")
                     @Html.TextBoxFor(x => x.InvoiceBody.TotalPrice, new { @class = "form-control" })
                     <br />
-                    @Html.LabelFor(x => x.InvoiceBody.InvoiceID)
-                    @Html.TextBoxFor(x => x.InvoiceBody.InvoiceID, new { @class = "form-control"  })
+                    @Html.Label("Fatura ID")
+                    @Html.TextBoxFor(x => x.InvoiceBody.InvoiceID, new { @class = "form-control" })
                     <br />
                     <button class="btn btn-default" style="background-color:yellowgreen">Ekle</button>
                 }
