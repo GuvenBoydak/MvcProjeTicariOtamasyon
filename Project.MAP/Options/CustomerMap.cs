@@ -17,6 +17,7 @@ namespace Project.MAP.Options
             Property(x=>x.City).HasColumnType("nvarchar").HasMaxLength(25).IsRequired();
             Property(x=>x.Email).HasColumnType("nvarchar").HasMaxLength(50).IsRequired();
             Property(x=>x.Password).HasColumnType("nvarchar").HasMaxLength(20).IsRequired();
+            Property(x => x.Authorization).HasColumnType("nvarchar").HasMaxLength(1);
 
         }
     }

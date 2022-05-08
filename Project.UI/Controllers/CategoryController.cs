@@ -14,6 +14,7 @@ using PagedList.Mvc;
 
 namespace Project.UI.Controllers
 {
+    [Authorize(Roles ="A")]
     public class CategoryController : Controller
     {
         CategoryManager _cManager;

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Project.UI.Controllers
 {
+    [Authorize(Roles = "A")]
     public class MessageController : Controller
     {
         MessageManager _mManager;

@@ -11,9 +11,11 @@ namespace Project.UI.Roles
     public class AdminRoleProvider : RoleProvider
     {
         AdminManager _aManager;
+        CustomerManager _cManager;
         public AdminRoleProvider()
         {
             _aManager = new AdminManager();
+            _cManager = new CustomerManager();
         }
 
         public override string ApplicationName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -45,8 +47,14 @@ namespace Project.UI.Roles
 
         public override string[] GetRolesForUser(string username)
         {
-            Admin admin=_aManager.GetActives().Where(x => x.UserName == username).FirstOrDefault();
-            return new string[] { admin.Authorization }; //Kullanıcıların yetkilerini Döndürüyor.
+            if (username.Contains("admin"))
+            {
+                Admin admin = _aManager.GetActives().Where(x => x.UserName == username).FirstOrDefault();
+                return new string[] { admin.Authorization }; //Kullanıcıların yetkilerini Döndürüyor.
+            }
+            Customer customer = _cManager.GetActives().Where(x => x.Email == username).FirstOrDefault();
+            return new string[] { customer.Authorization }; //Kullanıcıların yetkilerini Döndürüyor.
+
         }
 
         public override string[] GetUsersInRole(string roleName)

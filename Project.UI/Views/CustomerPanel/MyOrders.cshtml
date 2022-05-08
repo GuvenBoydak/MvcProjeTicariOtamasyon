@@ -4,11 +4,13 @@
     Layout = "~/Views/Shared/_Customer.cshtml";
 }
 
-<br />
 
+<hr2>Siparişlerim </hr2>
+<br />
 <table class="table table-hover">
     <thead>
         <tr>
+            <td>#</td>
             <td>Ürün Adi</td>
             <td>Adet</td>
             <td>Fiyat</td>
@@ -16,12 +18,14 @@
         </tr>
     </thead>
     <tbody>
+        @{int index = 0; }
         @foreach (SalesMovement item in Model.SalesMovements)
         {
             <tr>
+                <td>@{index++;} @index</td>
                 <td>@item.Product.Name</td>
                 <td>@item.Quantity</td>
-                <td>@item.TotalPrice</td>
+                <td>@item.TotalPrice ₺</td>
                 <td>@Convert.ToDateTime(item.CreatedDate).ToString("dd/MM/yyyy")</td>
             </tr>
         }

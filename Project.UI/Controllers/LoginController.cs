@@ -1,5 +1,6 @@
 ﻿using Project.BLL.DesingPatterns.GenericRepository.ConcreteRep;
 using Project.ENTITIES.Concrete.Entities;
+using Project.UI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,13 @@ namespace Project.UI.Controllers
     {
         CustomerManager _cManager;
         AdminManager _aManager;
+        ProductManager _pManager;
 
         public LoginController()
         {
             _cManager = new CustomerManager();
             _aManager = new AdminManager();
+            _pManager = new ProductManager();
         }
 
         // GET: Login
@@ -83,9 +86,15 @@ namespace Project.UI.Controllers
             {
                 return RedirectToAction("Index", "Login");
             }
-           
+        }
 
-            
+        public ActionResult ProductGallery()
+        {
+            ProductVM vM = new ProductVM()
+            {
+                Products = _pManager.GetActives()
+            };
+            return View(vM);
         }
 
     }

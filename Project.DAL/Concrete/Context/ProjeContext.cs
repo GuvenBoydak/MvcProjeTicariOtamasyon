@@ -18,6 +18,8 @@ namespace Project.DAL.Concrete.Context
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            Database.SetInitializer<ProjeContext>(null);
+
             modelBuilder.Configurations.Add(new AdminMap());
             modelBuilder.Configurations.Add(new CategoryMap());
             modelBuilder.Configurations.Add(new CustomerMap());

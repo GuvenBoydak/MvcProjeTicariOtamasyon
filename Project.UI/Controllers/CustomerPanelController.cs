@@ -28,7 +28,8 @@ namespace Project.UI.Controllers
             _sDManager = new ShippingDetailManager();
             _stManager = new  ShippingTrackingManager();
         }
-        // GET: CustomerPanel
+
+        [Authorize(Roles ="C")]
         public ActionResult Index()
         {
             string email = (string)Session["Login"];
@@ -53,7 +54,7 @@ namespace Project.UI.Controllers
             ViewBag.NameSurname = nameSurname;
             return View(vM);
         }
-
+        [Authorize(Roles = "C")]
         public ActionResult MyOrders()
         {
             string email = (string)Session["Login"];
@@ -66,7 +67,7 @@ namespace Project.UI.Controllers
 
             return View(vM);
         }
-
+        [Authorize(Roles = "C")]
         public PartialViewResult MessageMenu()
         {
             string email = (string)Session["Login"];
@@ -81,7 +82,7 @@ namespace Project.UI.Controllers
         }
 
 
-
+        [Authorize(Roles = "C")]
         public ActionResult IncomingMessages()
         {
             string email = (string)Session["Login"];
@@ -97,7 +98,7 @@ namespace Project.UI.Controllers
             ViewBag.SendMessage = sendMessage;
             return View(vM);
         }
-
+        [Authorize(Roles = "C")]
         public ActionResult SendMessages()
         {
             string email = (string)Session["Login"];
@@ -112,7 +113,7 @@ namespace Project.UI.Controllers
             ViewBag.SendMessage = sendMessage;
             return View(vM);
         }
-
+        [Authorize(Roles = "C")]
         public ActionResult DetailMessage(int id)
         {
             string email = (string)Session["Login"];
@@ -129,7 +130,7 @@ namespace Project.UI.Controllers
             return View(vM);
         }
 
-
+        [Authorize(Roles = "C")]
         public ActionResult NewMessage()
         {
             string email = (string)Session["Login"];
@@ -143,6 +144,7 @@ namespace Project.UI.Controllers
             return View();
         }
 
+        [Authorize(Roles = "C")]
         [HttpPost]
         public ActionResult NewMessage(Message message)
         {
@@ -152,39 +154,38 @@ namespace Project.UI.Controllers
             return RedirectToAction("");
         }
 
-        public ActionResult ShippingTracking(string a)
+        [Authorize(Roles = "C")]
+        public ActionResult ShippingTracking(string id)
         {
-            //Refactor Edilecek!!!!
-            string email = (string)Session["Login"];
-            //string a = _cManager.GetActives().Where(x => x.Email == email).Select(x => x.FirstName).FirstOrDefault();
-            //string b = _cManager.GetActives().Where(x => x.Email == email).Select(x => x.LastName).FirstOrDefault();
-            //string c = a + " " + b;
-
-            if (a!=null)
+            CustomerVM vM = new CustomerVM();
+            if (id!=null)
             {
-                CustomerVM vM = new CustomerVM()
-                {
-                    ShippingTrackings = _stManager.GetActives().Where(x => x.TrackingCode.Contains(a)).ToList(),
-                };
+                vM.ShippingTrackings = _stManager.GetActives().Where(x => x.TrackingCode.Contains(id)).ToList();
                 return View(vM);
             }
             else
             {
-                return View();
+                return View(vM);
             }
             
         }
 
-
-        public ActionResult ShippingDetail(string id)
+        [Authorize(Roles = "C")]
+        public ActionResult ShippingDetail()
         {
-            CustomerVM vM = new CustomerVM()
-            {
-                ShippingTrackings = _stManager.GetActives().Where(x=>x.TrackingCode==id).ToList()
-            };
+            //Refactor Edilecek!!!!
+            string email = (string)Session["Login"];
+            string d = _cManager.GetActives().Where(x => x.Email == email).Select(x => x.FirstName).FirstOrDefault();
+            string b = _cManager.GetActives().Where(x => x.Email == email).Select(x => x.LastName).FirstOrDefault();
+            string c = d + " " + b;
+
+            CustomerVM vM = new CustomerVM();
+            vM.ShippingDetails = _sDManager.GetActives().Where(x => x.Receiver.Contains(c)).ToList();
+
             return View(vM);
         }
 
+        [Authorize(Roles = "C")]
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut(); //Kullanıcı bileti tarayıcıdan kaldırılır Oturum sonlandırma.
@@ -192,6 +193,7 @@ namespace Project.UI.Controllers
             return RedirectToAction("Index","Login");
         }
 
+        [Authorize(Roles = "C")]
         public PartialViewResult Settings()
         {
             string email = (string)Session["Login"];
@@ -203,6 +205,7 @@ namespace Project.UI.Controllers
             return PartialView(vM);
         }
 
+        [Authorize(Roles = "C")]
         public PartialViewResult Announcements()
         {
             string email = (string)Session["Login"];
@@ -214,6 +217,7 @@ namespace Project.UI.Controllers
             return PartialView(vM);
         }
 
+        [Authorize(Roles = "C")]
         public ActionResult UpdateCustomerPanel(Customer customer)
         {
             _cManager.Update(customer);

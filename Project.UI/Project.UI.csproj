@@ -2955,6 +2955,7 @@
     <Content Include="Views\Message\IncomingMessage.cshtml" />
     <Content Include="Views\Message\NewMessage.cshtml" />
     <Content Include="Views\Message\DetailMessage.cshtml" />
+    <Content Include="Views\Login\ProductGallery.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

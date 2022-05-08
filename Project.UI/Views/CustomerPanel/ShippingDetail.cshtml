@@ -6,10 +6,19 @@
 
 <h2>Kargo Takip Sayfası</h2>
 <br />
+@using (Html.BeginForm("ShippingTracking", "CustomerPanel", FormMethod.Post))
+{
+    <p>
+        Kargo Takip Kodu:@Html.TextBox("id")
+        <input type="submit" value="Ara" />
+    </p>
+}
+<br />
 <table class="table table-striped">
     <thead>
         <tr>
             <th>#</th>
+            <th>Gönderen</th>
             <th>Kargo Takip Kodu</th>
             <th>Açıklama</th>
             <th>Tarih</th>
@@ -17,11 +26,12 @@
     </thead>
     <tbody>
         @{int index = 0;}
-        @foreach (ShippingTracking item in Model.ShippingTrackings)
+        @foreach (ShippingDetail item in Model.ShippingDetails)
         {
             <tr>
 
                 <td>@{index++;} @index </td>
+                <td>@item.Sender </td>
                 <td>@item.TrackingCode</td>
                 <td>@item.Description</td>
                 <td>@Convert.ToDateTime(@item.CreatedDate).ToString("dd-mm-yy")</td>

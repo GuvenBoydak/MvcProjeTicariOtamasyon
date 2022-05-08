@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Project.UI.Controllers
 {
+    [Authorize(Roles = "A")]
     public class ErrorController : Controller
     {
         // GET: Error

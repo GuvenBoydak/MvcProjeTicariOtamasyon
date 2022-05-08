@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace Project.UI.Controllers
 {
+    [Authorize(Roles = "A")]
     public class CustomerController : Controller
     {
         CustomerManager _cManaeger;
