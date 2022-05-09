@@ -11,10 +11,10 @@ namespace Project.UI.Controllers
     [Authorize(Roles = "A")]
     public class ProductDetailController : Controller
     {
-        ProductManager _pManager;
+        ProductRepository _pRepository;
         public ProductDetailController()
         {
-            _pManager = new ProductManager();
+            _pRepository = new ProductRepository();
         }
 
         // GET: ProductDetail
@@ -22,7 +22,7 @@ namespace Project.UI.Controllers
         {
             ProductVM vM = new ProductVM()
             {
-                Products = _pManager.GetActives().Where(x=>x.ID==id).ToList()
+                Products = _pRepository.GetActives().Where(x=>x.ID==id).ToList()
             };
             return View(vM);
         }

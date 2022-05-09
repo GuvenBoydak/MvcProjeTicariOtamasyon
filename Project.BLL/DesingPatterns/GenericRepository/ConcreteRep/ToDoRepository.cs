@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project.BLL.DesingPatterns.GenericRepository.ConcreteRep
 {
-    public class ToDoManager:BaseRepository<ToDo>
+    public class ToDoRepository:BaseRepository<ToDo>
     {
     }
 }

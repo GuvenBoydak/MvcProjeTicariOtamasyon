@@ -12,13 +12,13 @@ namespace Project.UI.Controllers
     [Authorize(Roles = "A")]
     public class InvoiceController : Controller
     {
-        InvoiceManager _iManager;
-        InvoiceBodyManager _iBManager;
+        InvoiceRepository _iRepository;
+        InvoiceBodyRepository _iBRepository;
 
         public InvoiceController()
         {
-            _iManager = new InvoiceManager();
-            _iBManager = new InvoiceBodyManager();
+            _iRepository = new InvoiceRepository();
+            _iBRepository = new InvoiceBodyRepository();
         }
 
         // GET: Invoice
@@ -26,7 +26,7 @@ namespace Project.UI.Controllers
         {
             InvoiceVM vM = new InvoiceVM()
             {
-                Invoices = _iManager.GetActives(),
+                Invoices = _iRepository.GetActives(),
             };
             return View(vM);
         }
@@ -39,7 +39,7 @@ namespace Project.UI.Controllers
         [HttpPost]
         public ActionResult AddInvoice(Invoice invoice)
         {
-            _iManager.Add(invoice);
+            _iRepository.Add(invoice);
             return RedirectToAction("Index");
         }
 
@@ -47,7 +47,7 @@ namespace Project.UI.Controllers
         {
             InvoiceVM vM = new InvoiceVM()
             {
-                Invoice = _iManager.Find(id)
+                Invoice = _iRepository.Find(id)
             };
             return View(vM);
         }
@@ -55,7 +55,7 @@ namespace Project.UI.Controllers
         [HttpPost]
         public ActionResult UpdateInvoice(Invoice invoice)
         {
-            _iManager.Update(invoice);
+            _iRepository.Update(invoice);
             return RedirectToAction("Index");
         }
 
@@ -63,7 +63,7 @@ namespace Project.UI.Controllers
         {
             InvoiceVM vM = new InvoiceVM()
             {
-                InvoiceBodies = _iBManager.Where(x => x.InvoiceID == id).ToList()
+                InvoiceBodies = _iBRepository.Where(x => x.InvoiceID == id).ToList()
             };
             return View(vM);
         }
@@ -76,7 +76,7 @@ namespace Project.UI.Controllers
         [HttpPost]
         public ActionResult AddInvoiceBody(InvoiceBody invoiceBody)
         {
-            _iBManager.Add(invoiceBody);
+            _iBRepository.Add(invoiceBody);
             return RedirectToAction("Index");
         }
 
@@ -84,8 +84,8 @@ namespace Project.UI.Controllers
         {
             InvoiceVM vM = new InvoiceVM()
             {
-                Invoices = _iManager.GetActives(),
-                InvoiceBodies = _iBManager.GetActives()
+                Invoices = _iRepository.GetActives(),
+                InvoiceBodies = _iBRepository.GetActives()
             };
             return View(vM);
         }
@@ -105,7 +105,7 @@ namespace Project.UI.Controllers
                 TotalPrice = totalPrice,
                 CreatedDate = createdDate
             };
-            _iManager.Add(invoice);
+            _iRepository.Add(invoice);
 
             foreach (InvoiceBody item in invoiceBodies)
             {
@@ -117,7 +117,7 @@ namespace Project.UI.Controllers
                 iBody.UnitPrice = item.UnitPrice;
                 iBody.TotalPrice = item.TotalPrice;
                 iBody.Status = item.Status;
-                _iBManager.Add(iBody);
+                _iBRepository.Add(iBody);
             }
 
             return Json("İşlem Başarılı", JsonRequestBehavior.AllowGet);

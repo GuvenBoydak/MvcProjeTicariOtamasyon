@@ -12,70 +12,70 @@ namespace Project.UI.Controllers
     [Authorize(Roles = "A")]
     public class StatisticsController : Controller
     {
-        CustomerManager _cManager;
-        ProductManager _pManager;
-        EmployeeManager _eManager;
-        CategoryManager _cateManager;
-        SalesMovementManager _sManager;
+        CustomerRepository _cRepository;
+        ProductRepository _pRepository;
+        EmployeeRepository _eRepository;
+        CategoryRepository _cateRepository;
+        SalesMovementRepository _sRepository;
 
         public StatisticsController()
         {
-            _cManager = new CustomerManager();
-            _pManager = new ProductManager();
-            _eManager = new EmployeeManager();
-            _cateManager = new CategoryManager();
-            _sManager = new SalesMovementManager();
+            _cRepository = new CustomerRepository();
+            _pRepository = new ProductRepository();
+            _eRepository = new EmployeeRepository();
+            _cateRepository = new CategoryRepository();
+            _sRepository = new SalesMovementRepository();
         }
 
         // GET: Statistics
         public ActionResult Index()
         {
-            string CustomerCount = _cManager.Count().ToString();
+            string CustomerCount = _cRepository.Count().ToString();
             ViewBag.CustomerCount = CustomerCount;
 
-            string ProductCount = _pManager.Count().ToString();
+            string ProductCount = _pRepository.Count().ToString();
             ViewBag.ProductCount = ProductCount;
 
-            string EmployeeCount = _eManager.Where(x => x.ID == x.ID).Count().ToString();
+            string EmployeeCount = _eRepository.Where(x => x.ID == x.ID).Count().ToString();
             ViewBag.EmployeeCount = EmployeeCount;
 
-            string CategoryCount = _cateManager.Where(x => x.ID == x.ID).Count().ToString();
+            string CategoryCount = _cateRepository.Where(x => x.ID == x.ID).Count().ToString();
             ViewBag.CategoryCount = CategoryCount;
 
-            string TotalStock = _pManager.Sum(x=>x.Stock).ToString();
+            string TotalStock = _pRepository.Sum(x=>x.Stock).ToString();
             ViewBag.TotalStock = TotalStock;
 
-            string CriticalStock = _pManager.Where(x => x.Stock<=20).Count().ToString();
+            string CriticalStock = _pRepository.Where(x => x.Stock<=20).Count().ToString();
             ViewBag.CriticalStock = CriticalStock;
 
-            string BrandCount = _pManager.GetActives().Select(x => x.Brand).Distinct().Count().ToString();
+            string BrandCount = _pRepository.GetActives().Select(x => x.Brand).Distinct().Count().ToString();
             ViewBag.BrandCount = BrandCount;
 
-            string MaxPriceProduct = _pManager.GetActives().OrderByDescending(x => x.SellPrice).FirstOrDefault().Name;
+            string MaxPriceProduct = _pRepository.GetActives().OrderByDescending(x => x.SellPrice).FirstOrDefault().Name;
             ViewBag.MaxPriceProduct = MaxPriceProduct;
 
-            string MinPriceProduct = _pManager.GetActives().OrderBy(x => x.SellPrice).FirstOrDefault().Name;
+            string MinPriceProduct = _pRepository.GetActives().OrderBy(x => x.SellPrice).FirstOrDefault().Name;
             ViewBag.MinPriceProduct = MinPriceProduct;
 
-            string BuzdolabiCount = _pManager.Where(x => x.Name == "Buzdolabı").Count().ToString();
+            string BuzdolabiCount = _pRepository.Where(x => x.Name == "Buzdolabı").Count().ToString();
             ViewBag.BuzdolabiCount = BuzdolabiCount;
 
-            string MaxProductOfTheCategory = _cateManager.GetActives().Where(x => x.ID == (_pManager.GetActives().GroupBy(y => y.CategoryID).OrderByDescending(y => y.Count()).Select(y => y.Key).FirstOrDefault())).Select(x => x.CategoryName).FirstOrDefault();
+            string MaxProductOfTheCategory = _cateRepository.GetActives().Where(x => x.ID == (_pRepository.GetActives().GroupBy(y => y.CategoryID).OrderByDescending(y => y.Count()).Select(y => y.Key).FirstOrDefault())).Select(x => x.CategoryName).FirstOrDefault();
             ViewBag.MaxProductOfTheCategory = MaxProductOfTheCategory;
 
-            string MaxBrand = _pManager.GetActives().GroupBy(x => x.Brand).OrderByDescending(x => x.Count()).Select(x => x.Key).FirstOrDefault();
+            string MaxBrand = _pRepository.GetActives().GroupBy(x => x.Brand).OrderByDescending(x => x.Count()).Select(x => x.Key).FirstOrDefault();
             ViewBag.MaxBrand = MaxBrand;
 
-            string MoneyInTheSafe = _sManager.GetActives().Sum(x => x.TotalPrice).ToString();
+            string MoneyInTheSafe = _sRepository.GetActives().Sum(x => x.TotalPrice).ToString();
             ViewBag.MoneyInTheSafe = MoneyInTheSafe;
 
-            string SalesToday = _sManager.GetActives().Where(x => x.CreatedDate == DateTime.Today).Sum(x => (decimal?)x.TotalPrice).ToString();
+            string SalesToday = _sRepository.GetActives().Where(x => x.CreatedDate == DateTime.Today).Sum(x => (decimal?)x.TotalPrice).ToString();
             ViewBag.SalesToday = SalesToday;
 
-            string MoneyInTheSafeToday = _sManager.Where(x => x.CreatedDate == DateTime.Today).Sum(x => x.TotalPrice).ToString();
+            string MoneyInTheSafeToday = _sRepository.Where(x => x.CreatedDate == DateTime.Today).Sum(x => x.TotalPrice).ToString();
             ViewBag.MoneyInTheSafeToday = MoneyInTheSafeToday;
 
-            string BestSellingProduct =_pManager.GetActives().Where(x=>x.ID ==(_sManager.GetActives().GroupBy(y => y.ProductID).OrderByDescending(y => y.Count()).Select(y => y.Key).FirstOrDefault())).Select(x=>x.Name).FirstOrDefault();
+            string BestSellingProduct =_pRepository.GetActives().Where(x=>x.ID ==(_sRepository.GetActives().GroupBy(y => y.ProductID).OrderByDescending(y => y.Count()).Select(y => y.Key).FirstOrDefault())).Select(x=>x.Name).FirstOrDefault();
             ViewBag.BastSellingProduct = BestSellingProduct;
 
             return View();
@@ -91,7 +91,7 @@ namespace Project.UI.Controllers
         {
             CategoryVM vM = new CategoryVM()
             {
-                ProductDTOs = _pManager.GetActives().GroupBy(x => x.Category.CategoryName).Select(x => new ProductDTO { Category = x.Key, Count = x.Count() }).ToList()
+                ProductDTOs = _pRepository.GetActives().GroupBy(x => x.Category.CategoryName).Select(x => new ProductDTO { Category = x.Key, Count = x.Count() }).ToList()
             };
             return PartialView(vM);
         }
@@ -101,7 +101,7 @@ namespace Project.UI.Controllers
         {
             CustomerVM vM = new CustomerVM()
             {
-                CustomerDTOs = _cManager.GetActives().GroupBy(x => x.City).Select(x => new CustomerDTO { City = x.Key, Count = x.Count() }).ToList()
+                CustomerDTOs = _cRepository.GetActives().GroupBy(x => x.City).Select(x => new CustomerDTO { City = x.Key, Count = x.Count() }).ToList()
             };
             return PartialView(vM);
         }
@@ -111,7 +111,7 @@ namespace Project.UI.Controllers
         {
             EmployeeVM vM = new EmployeeVM()
             {
-                EmployeeDTOs=_eManager.GetActives().GroupBy(x=>x.Department.Name).Select(x=> new EmployeeDTO {Department=x.Key,Count=x.Count() }).ToList()
+                EmployeeDTOs=_eRepository.GetActives().GroupBy(x=>x.Department.Name).Select(x=> new EmployeeDTO {Department=x.Key,Count=x.Count() }).ToList()
             };
             return PartialView(vM);
         }
@@ -120,7 +120,7 @@ namespace Project.UI.Controllers
         {
             ProductVM vM = new ProductVM()
             {
-                ProductDTOs = _pManager.GetActives().GroupBy(x => x.Brand).Select(x => new ProductDTO { Brand = x.Key, Count = x.Count() }).ToList()
+                ProductDTOs = _pRepository.GetActives().GroupBy(x => x.Brand).Select(x => new ProductDTO { Brand = x.Key, Count = x.Count() }).ToList()
             };
             return PartialView(vM);
         }
@@ -129,7 +129,7 @@ namespace Project.UI.Controllers
         {
             ProductVM vM = new ProductVM()
             {
-                Products = _pManager.GetActives()
+                Products = _pRepository.GetActives()
             };
             return PartialView(vM);
         }
@@ -138,7 +138,7 @@ namespace Project.UI.Controllers
         {
             CustomerVM vM = new CustomerVM()
             {
-                Customers=_cManager.GetActives()
+                Customers=_cRepository.GetActives()
             };
             return PartialView(vM);
         }

@@ -15,13 +15,13 @@ namespace Project.UI.Controllers
     [Authorize(Roles = "A")]
     public class EmployeeController : Controller
     {
-        EmployeeManager _eManager;
-        DepartmentManager _dManager;
+        EmployeeRepository _eRepository;
+        DepartmentRepository _dRepository;
         EmployeeValidator _eValidator;
         public EmployeeController()
         {
-            _eManager = new EmployeeManager();
-            _dManager = new DepartmentManager();
+            _eRepository = new EmployeeRepository();
+            _dRepository = new DepartmentRepository();
             _eValidator = new EmployeeValidator();
         }
 
@@ -30,7 +30,7 @@ namespace Project.UI.Controllers
         {
             EmployeeVM vM = new EmployeeVM()
             {
-                Employees = _eManager.GetActives()
+                Employees = _eRepository.GetActives()
             };
             return View(vM);
         }
@@ -39,7 +39,7 @@ namespace Project.UI.Controllers
         {
             EmployeeVM vM = new EmployeeVM()
             {
-                Departments = _dManager.GetActives()
+                Departments = _dRepository.GetActives()
             };
             return View(vM);
         }
@@ -60,7 +60,7 @@ namespace Project.UI.Controllers
                 //Personel görseline veri tabanına kaydelicek degeri atadik.
                 employee.Image= "/Imagee/" + filesName + extension;
             }
-            _eManager.Add(employee);
+            _eRepository.Add(employee);
             return RedirectToAction("Index");
         }
 
@@ -68,8 +68,8 @@ namespace Project.UI.Controllers
         {
             EmployeeVM vM = new EmployeeVM()
             {
-                Employee = _eManager.Find(id),
-                Departments = _dManager.GetActives()
+                Employee = _eRepository.Find(id),
+                Departments = _dRepository.GetActives()
             };
             return View(vM);
         }
@@ -90,7 +90,7 @@ namespace Project.UI.Controllers
                 //Personel görseline veri tabanına kaydelicek degeri atadik.
                 employee.Image = "/Imagee/" + filesName + extension;
             }
-            _eManager.Update(employee);
+            _eRepository.Update(employee);
 
             return RedirectToAction("Index");
         }
@@ -99,7 +99,7 @@ namespace Project.UI.Controllers
         {
             EmployeeVM vM = new EmployeeVM()
             {
-                Employees = _eManager.GetActives()
+                Employees = _eRepository.GetActives()
             };
             return View(vM);
         }

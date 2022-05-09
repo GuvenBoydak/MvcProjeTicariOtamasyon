@@ -17,11 +17,11 @@ namespace Project.UI.Controllers
     [Authorize(Roles ="A")]
     public class CategoryController : Controller
     {
-        CategoryManager _cManager;
+        CategoryRepository _cRepository;
         CategoryValidator _cValidator;
         public CategoryController()
         {
-            _cManager = new CategoryManager();
+            _cRepository = new CategoryRepository();
             _cValidator = new CategoryValidator();
         }
         // GET: Category
@@ -29,7 +29,7 @@ namespace Project.UI.Controllers
         {
             CategoryVM vM = new CategoryVM()
             {
-                CategoriesPaged = _cManager.GetActives().ToPagedList(paged, 7),
+                CategoriesPaged = _cRepository.GetActives().ToPagedList(paged, 7),
             };
             return View(vM);
         }
@@ -58,7 +58,7 @@ namespace Project.UI.Controllers
             }
             else
             {
-                _cManager.Add(category);
+                _cRepository.Add(category);
             }
             return RedirectToAction("Index");
         }
@@ -67,7 +67,7 @@ namespace Project.UI.Controllers
         {
             CategoryVM vM = new CategoryVM()
             {
-                Category = _cManager.Find(id)
+                Category = _cRepository.Find(id)
             };
             return View(vM);
         }
@@ -91,14 +91,14 @@ namespace Project.UI.Controllers
             }
             else
             {
-                _cManager.Update(category);
+                _cRepository.Update(category);
             }
             return RedirectToAction("Index");
         }
 
         public ActionResult DeleteCategory(int id)
         {
-            _cManager.Delete(_cManager.Find(id));
+            _cRepository.Delete(_cRepository.Find(id));
             return RedirectToAction("Index");
         }
 

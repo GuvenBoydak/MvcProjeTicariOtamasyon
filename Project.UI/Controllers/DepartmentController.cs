@@ -14,16 +14,16 @@ namespace Project.UI.Controllers
     [Authorize(Roles = "A")]
     public class DepartmentController : Controller
     {
-        DepartmentManager _dManager;
-        EmployeeManager _eManager;
-        SalesMovementManager _sManager;
+        DepartmentRepository _dRepository;
+        EmployeeRepository _eRepository;
+        SalesMovementRepository _sRepository;
         DepartmentValidator _dValidator;
 
         public DepartmentController()
         {
-            _dManager = new DepartmentManager();
-            _eManager = new EmployeeManager();
-            _sManager = new SalesMovementManager();
+            _dRepository = new DepartmentRepository();
+            _eRepository = new EmployeeRepository();
+            _sRepository = new SalesMovementRepository();
             _dValidator = new DepartmentValidator();
         }
 
@@ -32,7 +32,7 @@ namespace Project.UI.Controllers
         {
             DepartmentVM vM = new DepartmentVM()
             {
-                Departments = _dManager.GetActives()
+                Departments = _dRepository.GetActives()
             };
             return View(vM);
         }
@@ -62,7 +62,7 @@ namespace Project.UI.Controllers
             }
             else
             {
-                _dManager.Add(department);
+                _dRepository.Add(department);
             }
             return RedirectToAction("Index");
         }
@@ -72,7 +72,7 @@ namespace Project.UI.Controllers
         {
             DepartmentVM vM = new DepartmentVM()
             {
-                Department = _dManager.Find(id)
+                Department = _dRepository.Find(id)
             };
             return View(vM);
         }
@@ -96,14 +96,14 @@ namespace Project.UI.Controllers
             }
             else
             {
-                _dManager.Update(department);
+                _dRepository.Update(department);
             }
             return RedirectToAction("Index");
         }
 
         public ActionResult DeleteDepartment(int id)
         {
-            _dManager.Delete(_dManager.Find(id));
+            _dRepository.Delete(_dRepository.Find(id));
             return RedirectToAction("Index");
         }
 
@@ -111,10 +111,10 @@ namespace Project.UI.Controllers
         {
             DepartmentVM vM = new DepartmentVM()
             {
-                Employees = _eManager.Where(x => x.DepartmentID == id).ToList()
+                Employees = _eRepository.Where(x => x.DepartmentID == id).ToList()
 
             };
-            string departmentName = _dManager.Where(x => x.ID == id).Select(z => z.Name).FirstOrDefault();
+            string departmentName = _dRepository.Where(x => x.ID == id).Select(z => z.Name).FirstOrDefault();
             ViewBag.DepartmentName = departmentName;
             return View(vM);
         }
@@ -122,10 +122,10 @@ namespace Project.UI.Controllers
         {
             DepartmentVM vM = new DepartmentVM()
             {
-                SalesMovements = _sManager.Where(x => x.EmployeeID == id).ToList()
+                SalesMovements = _sRepository.Where(x => x.EmployeeID == id).ToList()
 
             };
-            string employee = _eManager.Where(x => x.ID == id).Select(z => z.FirstName + "" + z.LastName).FirstOrDefault();
+            string employee = _eRepository.Where(x => x.ID == id).Select(z => z.FirstName + "" + z.LastName).FirstOrDefault();
             ViewBag.Employee = employee;
             return View(vM);
         }

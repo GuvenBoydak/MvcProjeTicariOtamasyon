@@ -15,16 +15,16 @@ namespace Project.UI.Controllers
     [Authorize(Roles = "A")]
     public class ProductController : Controller
     {
-        ProductManager _pManager;
-        CategoryManager _cManager;
-        EmployeeManager _eManager;
-        SalesMovementManager _sManager;
+        ProductRepository _pRepository;
+        CategoryRepository _cRepository;
+        EmployeeRepository _eRepository;
+        SalesMovementRepository _sRepository;
         public ProductController()
         {
-            _pManager = new ProductManager();
-            _cManager = new CategoryManager();
-            _eManager = new EmployeeManager();
-            _sManager = new SalesMovementManager();
+            _pRepository = new ProductRepository();
+            _cRepository = new CategoryRepository();
+            _eRepository = new EmployeeRepository();
+            _sRepository = new SalesMovementRepository();
         }
 
         // GET: Product
@@ -32,7 +32,7 @@ namespace Project.UI.Controllers
         {
             ProductVM vM = new ProductVM()
             {
-                ProductsPaged = _pManager.GetActives().ToPagedList(paged, 6),
+                ProductsPaged = _pRepository.GetActives().ToPagedList(paged, 6),
             };
 
             return View(vM);
@@ -44,7 +44,7 @@ namespace Project.UI.Controllers
 
             ProductVM vM = new ProductVM()
             {
-                Categories = _cManager.GetActives()
+                Categories = _cRepository.GetActives()
             };
             return View(vM);
         }
@@ -63,7 +63,7 @@ namespace Project.UI.Controllers
                 //Personel görseline veri tabanına kaydelicek degeri atadik.
                 product.ProductImage = "/Imagee/" + filesName;
             }
-            _pManager.Add(product);
+            _pRepository.Add(product);
             return RedirectToAction("Index");
         }
 
@@ -71,8 +71,8 @@ namespace Project.UI.Controllers
         {
             ProductVM vM = new ProductVM()
             {
-                Product = _pManager.Find(id),
-                Categories = _cManager.GetActives()
+                Product = _pRepository.Find(id),
+                Categories = _cRepository.GetActives()
             };
 
             return View(vM);
@@ -92,13 +92,13 @@ namespace Project.UI.Controllers
                 //Personel görseline veri tabanına kaydelicek degeri atadik.
                 product.ProductImage = "/Imagee/" + filesName;
             }
-            _pManager.Update(product);
+            _pRepository.Update(product);
             return RedirectToAction("Index");
         }
 
         public ActionResult DeleteProduct(int id)
         {
-            _pManager.Delete(_pManager.Find(id));
+            _pRepository.Delete(_pRepository.Find(id));
             return RedirectToAction("Index");
         }
 
@@ -106,8 +106,8 @@ namespace Project.UI.Controllers
         {
             ProductVM vM = new ProductVM()
             {
-                Products = _pManager.GetActives(),
-                Categories = _cManager.GetActives()
+                Products = _pRepository.GetActives(),
+                Categories = _cRepository.GetActives()
             };
             return View(vM);
         }
@@ -117,10 +117,10 @@ namespace Project.UI.Controllers
         {
             ProductVM vM = new ProductVM()
             {
-                Employees = _eManager.GetActives()
+                Employees = _eRepository.GetActives()
             };
 
-            int productID= _pManager.Find(id).ID;
+            int productID= _pRepository.Find(id).ID;
             ViewBag.ProductID =productID;
 
             return View(vM);
@@ -129,7 +129,7 @@ namespace Project.UI.Controllers
         [HttpPost]
         public ActionResult SellProduct(SalesMovement salesMovement)
         {
-            _sManager.Add(salesMovement);
+            _sRepository.Add(salesMovement);
             return RedirectToAction("Index","SalesMovement");
         }
 

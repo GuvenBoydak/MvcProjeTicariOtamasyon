@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project.BLL.DesingPatterns.GenericRepository.ConcreteRep
 {
-    public class AdminManager:BaseRepository<Admin>
+    public class MessageRepository:BaseRepository<Message>
     {
     }
 }

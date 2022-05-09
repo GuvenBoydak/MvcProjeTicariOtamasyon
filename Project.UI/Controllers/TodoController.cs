@@ -11,39 +11,39 @@ namespace Project.UI.Controllers
     [Authorize(Roles = "A")]
     public class TodoController : Controller
     {
-        ToDoManager _tManager;
-        CustomerManager _cManager;
-        ProductManager _pManager;
-        CategoryManager _cateManager;
-        SalesMovementManager _sManager;
+        ToDoRepository _tRepository;
+        CustomerRepository _cRepository;
+        ProductRepository _pRepository;
+        CategoryRepository _cateRepository;
+        SalesMovementRepository _sRepository;
 
         public TodoController()
         {
-            _tManager = new ToDoManager();
-            _cManager = new CustomerManager();
-            _pManager = new ProductManager();
-            _cateManager = new CategoryManager();
-            _sManager = new SalesMovementManager();
+            _tRepository = new ToDoRepository();
+            _cRepository = new CustomerRepository();
+            _pRepository = new ProductRepository();
+            _cateRepository = new CategoryRepository();
+            _sRepository = new SalesMovementRepository();
         }
          
         // GET: Todo
         public ActionResult Index()
         {
-            string CustomerCount = _cManager.Count().ToString();
+            string CustomerCount = _cRepository.Count().ToString();
             ViewBag.CustomerCount = CustomerCount;
 
-            string ProductCount = _pManager.Count().ToString();
+            string ProductCount = _pRepository.Count().ToString();
             ViewBag.ProductCount = ProductCount;
 
-            string CategoryCount = _cateManager.Count().ToString();
+            string CategoryCount = _cateRepository.Count().ToString();
             ViewBag.CategoryCount = CategoryCount;
 
-            string BestSellerProduct = _sManager.GetActives().GroupBy(x => x.Product.Name).OrderByDescending(y => y.Count()).Select(x => x.Key).FirstOrDefault();
+            string BestSellerProduct = _sRepository.GetActives().GroupBy(x => x.Product.Name).OrderByDescending(y => y.Count()).Select(x => x.Key).FirstOrDefault();
             ViewBag.BestSellerProduct = BestSellerProduct;
 
             ToDoVM vM = new ToDoVM()
             {
-                ToDos = _tManager.GetActives()
+                ToDos = _tRepository.GetActives()
             };
             return View(vM);
         }

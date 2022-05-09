@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project.BLL.DesingPatterns.GenericRepository.ConcreteRep
 {
-    public class ShippingTrackingManager:BaseRepository<ShippingTracking>
+    public class InvoiceBodyRepository : BaseRepository<InvoiceBody>
     {
     }
 }

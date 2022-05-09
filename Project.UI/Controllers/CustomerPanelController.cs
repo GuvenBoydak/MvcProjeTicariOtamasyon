@@ -14,19 +14,19 @@ namespace Project.UI.Controllers
     [Authorize] //kullanıcı giriş sorguluyoruz. [Authorize] atrribute ile.
     public class CustomerPanelController : Controller
     {
-        CustomerManager _cManager;
-        SalesMovementManager _sManager;
-        MessageManager _mManager;
-        ShippingDetailManager _sDManager;
-        ShippingTrackingManager _stManager;
+        CustomerRepository _cRepository;
+        SalesMovementRepository _sRepository;
+        MessageRepository _mRepository;
+        ShippingDetailRepository _sDRepository;
+        ShippingTrackingRepository _stRepository;
 
         public CustomerPanelController()
         {
-            _cManager = new CustomerManager();
-            _sManager = new SalesMovementManager();
-            _mManager = new MessageManager();
-            _sDManager = new ShippingDetailManager();
-            _stManager = new  ShippingTrackingManager();
+            _cRepository = new CustomerRepository();
+            _sRepository = new SalesMovementRepository();
+            _mRepository = new MessageRepository();
+            _sDRepository = new ShippingDetailRepository();
+            _stRepository = new  ShippingTrackingRepository();
         }
 
         [Authorize(Roles ="C")]
@@ -36,21 +36,21 @@ namespace Project.UI.Controllers
             ViewBag.Email = email;
             CustomerVM vM = new CustomerVM()
             {
-                Customers = _cManager.GetActives().Where(x => x.Email == email).ToList(),
-                Messages=_mManager.GetActives().Where(x=>x.Receiver==email).ToList()              
+                Customers = _cRepository.GetActives().Where(x => x.Email == email).ToList(),
+                Messages=_mRepository.GetActives().Where(x=>x.Receiver==email).ToList()              
             };
-            int mailId = _cManager.GetActives().Where(x => x.Email == email).Select(x => x.ID).FirstOrDefault();
+            int mailId = _cRepository.GetActives().Where(x => x.Email == email).Select(x => x.ID).FirstOrDefault();
 
-            int totalSales = _sManager.GetActives().Where(x => x.CustomerID == mailId).Count();
+            int totalSales = _sRepository.GetActives().Where(x => x.CustomerID == mailId).Count();
             ViewBag.TotalSales = totalSales;
 
-            decimal totalAmount = _sManager.GetActives().Where(x => x.CustomerID == mailId).Sum(x => x.TotalPrice);
+            decimal totalAmount = _sRepository.GetActives().Where(x => x.CustomerID == mailId).Sum(x => x.TotalPrice);
             ViewBag.TotalAmount = totalAmount;
 
-            int totalOrderQuantity = _sManager.GetActives().Where(x => x.CustomerID == mailId).Sum(x => x.Quantity);
+            int totalOrderQuantity = _sRepository.GetActives().Where(x => x.CustomerID == mailId).Sum(x => x.Quantity);
             ViewBag.TotalOrderQuantity = totalOrderQuantity;
 
-            string nameSurname = _cManager.GetActives().Where(x => x.Email == email).Select(x => x.FirstName + " " + x.LastName).FirstOrDefault();
+            string nameSurname = _cRepository.GetActives().Where(x => x.Email == email).Select(x => x.FirstName + " " + x.LastName).FirstOrDefault();
             ViewBag.NameSurname = nameSurname;
             return View(vM);
         }
@@ -58,11 +58,11 @@ namespace Project.UI.Controllers
         public ActionResult MyOrders()
         {
             string email = (string)Session["Login"];
-            int ID = _cManager.Where(x => x.Email == email).Select(x => x.ID).FirstOrDefault();
+            int ID = _cRepository.Where(x => x.Email == email).Select(x => x.ID).FirstOrDefault();
 
             CustomerVM vM = new CustomerVM()
             {
-                SalesMovements = _sManager.Where(x => x.ID == ID).ToList()
+                SalesMovements = _sRepository.Where(x => x.ID == ID).ToList()
             };
 
             return View(vM);
@@ -72,10 +72,10 @@ namespace Project.UI.Controllers
         {
             string email = (string)Session["Login"];
 
-            int incomingMessage = _mManager.GetActives().Count(x => x.Receiver == email);
+            int incomingMessage = _mRepository.GetActives().Count(x => x.Receiver == email);
             ViewBag.IncomingMessage = incomingMessage;
 
-            int sendMessage = _mManager.GetActives().Count(x => x.Sender == email);
+            int sendMessage = _mRepository.GetActives().Count(x => x.Sender == email);
             ViewBag.SendMessage = sendMessage;
 
             return PartialView();
@@ -88,13 +88,13 @@ namespace Project.UI.Controllers
             string email = (string)Session["Login"];
             MessageVM vM = new MessageVM()
             {
-                Messages = _mManager.GetActives().Where(x => x.Receiver == email).OrderByDescending(x => x.ID).ToList()
+                Messages = _mRepository.GetActives().Where(x => x.Receiver == email).OrderByDescending(x => x.ID).ToList()
             };
 
-            int incomingMessage = _mManager.GetActives().Count(x => x.Receiver == email);
+            int incomingMessage = _mRepository.GetActives().Count(x => x.Receiver == email);
             ViewBag.IncomingMessage = incomingMessage;
 
-            int sendMessage = _mManager.GetActives().Count(x => x.Sender == email);
+            int sendMessage = _mRepository.GetActives().Count(x => x.Sender == email);
             ViewBag.SendMessage = sendMessage;
             return View(vM);
         }
@@ -104,12 +104,12 @@ namespace Project.UI.Controllers
             string email = (string)Session["Login"];
             MessageVM vM = new MessageVM()
             {
-                Messages = _mManager.GetActives().Where(x => x.Sender == email).OrderByDescending(x => x.ID).ToList()
+                Messages = _mRepository.GetActives().Where(x => x.Sender == email).OrderByDescending(x => x.ID).ToList()
             };
-            int incomingMessage = _mManager.GetActives().Count(x => x.Receiver == email);
+            int incomingMessage = _mRepository.GetActives().Count(x => x.Receiver == email);
             ViewBag.IncomingMessage = incomingMessage;
 
-            int sendMessage = _mManager.GetActives().Count(x => x.Sender == email);
+            int sendMessage = _mRepository.GetActives().Count(x => x.Sender == email);
             ViewBag.SendMessage = sendMessage;
             return View(vM);
         }
@@ -119,13 +119,13 @@ namespace Project.UI.Controllers
             string email = (string)Session["Login"];
             MessageVM vM = new MessageVM()
             {
-                Messages = _mManager.Where(x => x.ID == id).ToList()
+                Messages = _mRepository.Where(x => x.ID == id).ToList()
             };
 
-            int incomingMessage = _mManager.GetActives().Count(x => x.Receiver == email);
+            int incomingMessage = _mRepository.GetActives().Count(x => x.Receiver == email);
             ViewBag.IncomingMessage = incomingMessage;
 
-            int sendMessage = _mManager.GetActives().Count(x => x.Sender == email);
+            int sendMessage = _mRepository.GetActives().Count(x => x.Sender == email);
             ViewBag.SendMessage = sendMessage;
             return View(vM);
         }
@@ -135,10 +135,10 @@ namespace Project.UI.Controllers
         {
             string email = (string)Session["Login"];
 
-            int incomingMessage = _mManager.GetActives().Count(x => x.Receiver == email);
+            int incomingMessage = _mRepository.GetActives().Count(x => x.Receiver == email);
             ViewBag.IncomingMessage = incomingMessage;
 
-            int sendMessage = _mManager.GetActives().Count(x => x.Sender == email);
+            int sendMessage = _mRepository.GetActives().Count(x => x.Sender == email);
             ViewBag.SendMessage = sendMessage;
 
             return View();
@@ -150,7 +150,7 @@ namespace Project.UI.Controllers
         {
             string email = (string)Session["Login"];
             message.Sender = email;
-            _mManager.Add(message);
+            _mRepository.Add(message);
             return RedirectToAction("");
         }
 
@@ -160,7 +160,7 @@ namespace Project.UI.Controllers
             CustomerVM vM = new CustomerVM();
             if (id!=null)
             {
-                vM.ShippingTrackings = _stManager.GetActives().Where(x => x.TrackingCode.Contains(id)).ToList();
+                vM.ShippingTrackings = _stRepository.GetActives().Where(x => x.TrackingCode.Contains(id)).ToList();
                 return View(vM);
             }
             else
@@ -175,12 +175,12 @@ namespace Project.UI.Controllers
         {
             //Refactor Edilecek!!!!
             string email = (string)Session["Login"];
-            string d = _cManager.GetActives().Where(x => x.Email == email).Select(x => x.FirstName).FirstOrDefault();
-            string b = _cManager.GetActives().Where(x => x.Email == email).Select(x => x.LastName).FirstOrDefault();
+            string d = _cRepository.GetActives().Where(x => x.Email == email).Select(x => x.FirstName).FirstOrDefault();
+            string b = _cRepository.GetActives().Where(x => x.Email == email).Select(x => x.LastName).FirstOrDefault();
             string c = d + " " + b;
 
             CustomerVM vM = new CustomerVM();
-            vM.ShippingDetails = _sDManager.GetActives().Where(x => x.Receiver.Contains(c)).ToList();
+            vM.ShippingDetails = _sDRepository.GetActives().Where(x => x.Receiver.Contains(c)).ToList();
 
             return View(vM);
         }
@@ -197,10 +197,10 @@ namespace Project.UI.Controllers
         public PartialViewResult Settings()
         {
             string email = (string)Session["Login"];
-            int customerID = _cManager.GetActives().Where(x => x.Email == email).Select(x => x.ID).FirstOrDefault();
+            int customerID = _cRepository.GetActives().Where(x => x.Email == email).Select(x => x.ID).FirstOrDefault();
             CustomerVM vM = new CustomerVM()
             {
-                Customer = _cManager.Find(customerID)
+                Customer = _cRepository.Find(customerID)
             };
             return PartialView(vM);
         }
@@ -212,7 +212,7 @@ namespace Project.UI.Controllers
 
             CustomerVM vM = new CustomerVM()
             {
-                Messages = _mManager.GetActives().Where(x => x.Sender.Contains("admin")).OrderByDescending(x=>x.ID).ToList()
+                Messages = _mRepository.GetActives().Where(x => x.Sender.Contains("admin")).OrderByDescending(x=>x.ID).ToList()
             };
             return PartialView(vM);
         }
@@ -220,7 +220,7 @@ namespace Project.UI.Controllers
         [Authorize(Roles = "C")]
         public ActionResult UpdateCustomerPanel(Customer customer)
         {
-            _cManager.Update(customer);
+            _cRepository.Update(customer);
             return RedirectToAction("Index");
         }
 

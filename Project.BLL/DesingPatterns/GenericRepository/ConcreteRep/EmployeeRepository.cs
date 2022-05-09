@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Project.BLL.DesingPatterns.GenericRepository.ConcreteRep
 {
-    public class CustomerManager : BaseRepository<Customer>
+    public class EmployeeRepository : BaseRepository<Employee>
     {
     }
 }

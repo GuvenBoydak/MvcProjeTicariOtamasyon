@@ -13,15 +13,15 @@ namespace Project.UI.Controllers
     [AllowAnonymous]
     public class LoginController : Controller
     {
-        CustomerManager _cManager;
-        AdminManager _aManager;
-        ProductManager _pManager;
+        CustomerRepository _cRepository;
+        AdminRepository _aRepository;
+        ProductRepository _pRepository;
 
         public LoginController()
         {
-            _cManager = new CustomerManager();
-            _aManager = new AdminManager();
-            _pManager = new ProductManager();
+            _cRepository = new CustomerRepository();
+            _aRepository = new AdminRepository();
+            _pRepository = new ProductRepository();
         }
 
         // GET: Login
@@ -38,7 +38,7 @@ namespace Project.UI.Controllers
         [HttpPost]
         public PartialViewResult RegisterPartial(Customer customer)
         {
-            _cManager.Add(customer);
+            _cRepository.Add(customer);
             return PartialView();
         }
 
@@ -50,7 +50,7 @@ namespace Project.UI.Controllers
         [HttpPost]
         public ActionResult CustomerLogin(Customer customer)
         {
-            Customer login = _cManager.Where(x => x.Email == customer.Email && x.Password == customer.Password).FirstOrDefault();
+            Customer login = _cRepository.Where(x => x.Email == customer.Email && x.Password == customer.Password).FirstOrDefault();
 
             if (login!=null)
             {              
@@ -73,7 +73,7 @@ namespace Project.UI.Controllers
         [HttpPost]
         public ActionResult AdminLogin(Admin admin)
         {
-            Admin info = _aManager.GetActives().FirstOrDefault(x => x.UserName == admin.UserName && x.Password == admin.Password);
+            Admin info = _aRepository.GetActives().FirstOrDefault(x => x.UserName == admin.UserName && x.Password == admin.Password);
 
             if (info!=null)
             {
@@ -92,7 +92,7 @@ namespace Project.UI.Controllers
         {
             ProductVM vM = new ProductVM()
             {
-                Products = _pManager.GetActives()
+                Products = _pRepository.GetActives()
             };
             return View(vM);
         }

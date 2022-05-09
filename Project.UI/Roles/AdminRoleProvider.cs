@@ -10,12 +10,12 @@ namespace Project.UI.Roles
 {
     public class AdminRoleProvider : RoleProvider
     {
-        AdminManager _aManager;
-        CustomerManager _cManager;
+        AdminRepository _aManager;
+        CustomerRepository _cManager;
         public AdminRoleProvider()
         {
-            _aManager = new AdminManager();
-            _cManager = new CustomerManager();
+            _aManager = new AdminRepository();
+            _cManager = new CustomerRepository();
         }
 
         public override string ApplicationName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }

@@ -11,17 +11,17 @@ namespace Project.UI.Controllers
     [Authorize(Roles = "A")]
     public class GalleryController : Controller
     {
-        ProductManager _pManager;
+        ProductRepository _pRepository;
         public GalleryController()
         {
-            _pManager = new ProductManager();
+            _pRepository = new ProductRepository();
         }
         // GET: Gallery
         public ActionResult Index()
         {
             GalleryVM vM = new GalleryVM()
             {
-                Products = _pManager.GetActives()
+                Products = _pRepository.GetActives()
             };
             return View(vM);
         }

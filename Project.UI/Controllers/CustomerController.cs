@@ -14,17 +14,17 @@ namespace Project.UI.Controllers
     [Authorize(Roles = "A")]
     public class CustomerController : Controller
     {
-        CustomerManager _cManaeger;
-        SalesMovementManager _sManager;
-        EmployeeManager _eManager;
+        CustomerRepository _cRepository;
+        SalesMovementRepository _sRepository;
+        EmployeeRepository _eRepository;
 
         CustomerValidator _cValidator;
         public CustomerController()
         {
-            _cManaeger = new CustomerManager();
+            _cRepository = new CustomerRepository();
             _cValidator = new CustomerValidator();
-            _sManager = new SalesMovementManager();
-            _eManager = new EmployeeManager();
+            _sRepository = new SalesMovementRepository();
+            _eRepository = new EmployeeRepository();
         }
 
         // GET: Customer
@@ -32,7 +32,7 @@ namespace Project.UI.Controllers
         {
             CustomerVM vM = new CustomerVM()
             {
-                Customers = _cManaeger.GetActives()
+                Customers = _cRepository.GetActives()
             };
             return View(vM);
         }
@@ -61,7 +61,7 @@ namespace Project.UI.Controllers
             }
             else
             {
-                _cManaeger.Add(customer);
+                _cRepository.Add(customer);
             }
             return RedirectToAction("Index");
         }
@@ -70,7 +70,7 @@ namespace Project.UI.Controllers
         {
             CustomerVM vM = new CustomerVM()
             {
-                Customer = _cManaeger.Find(id)
+                Customer = _cRepository.Find(id)
             };
 
             return View(vM);
@@ -94,14 +94,14 @@ namespace Project.UI.Controllers
             }
             else
             {
-                _cManaeger.Update(customer);
+                _cRepository.Update(customer);
             }
             return RedirectToAction("Index");
         }
 
         public ActionResult DeleteCustomer(int id)
         {
-            _cManaeger.Delete(_cManaeger.Find(id));
+            _cRepository.Delete(_cRepository.Find(id));
             return RedirectToAction("Index");
         }
 
@@ -109,10 +109,10 @@ namespace Project.UI.Controllers
         {
             CustomerVM vM = new CustomerVM()
             {
-                SalesMovements = _sManager.Where(x => x.Customer.ID == id).ToList(),
-                Employees = _eManager.GetActives()
+                SalesMovements = _sRepository.Where(x => x.Customer.ID == id).ToList(),
+                Employees = _eRepository.GetActives()
             };
-            string customer = _cManaeger.Where(x => x.ID == id).Select(x => x.FirstName + " " + x.LastName).FirstOrDefault();
+            string customer = _cRepository.Where(x => x.ID == id).Select(x => x.FirstName + " " + x.LastName).FirstOrDefault();
             ViewBag.Customer = customer;
             return View(vM);
         }

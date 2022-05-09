@@ -11,20 +11,20 @@ namespace Project.UI.Controllers
 {
     public class ShippingController : Controller
     {
-        ShippingDetailManager _sdManager;
-        ShippingTrackingManager _stManager;
+        ShippingDetailRepository _sdRepository;
+        ShippingTrackingRepository _stRepository;
         public ShippingController()
         {
-            _sdManager = new ShippingDetailManager();
-            _stManager = new ShippingTrackingManager();
+            _sdRepository = new ShippingDetailRepository();
+            _stRepository = new ShippingTrackingRepository();
         }
         // GET: Shipping
         public ActionResult Index()
         {
             ShippingDetailVM vM = new ShippingDetailVM()
             {
-                ShippingDetails = _sdManager.GetActives(),
-                ShippingTrackings=_stManager.GetActives()
+                ShippingDetails = _sdRepository.GetActives(),
+                ShippingTrackings=_stRepository.GetActives()
                 
             };
             Random rdm = new Random();
@@ -51,7 +51,7 @@ namespace Project.UI.Controllers
         [HttpPost]
         public ActionResult AddShippingDetail(ShippingDetail shippingDetail)
         {
-            _sdManager.Add(shippingDetail);
+            _sdRepository.Add(shippingDetail);
             return RedirectToAction("Index");
         }
 
@@ -59,7 +59,7 @@ namespace Project.UI.Controllers
         {
             ShippingDetailVM vM = new ShippingDetailVM()
             {          
-                ShippingTrackings = _stManager.Where(x => x.TrackingCode == id)
+                ShippingTrackings = _stRepository.Where(x => x.TrackingCode == id)
             };
             return View(vM);
         }

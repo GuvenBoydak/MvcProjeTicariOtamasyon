@@ -14,12 +14,12 @@ namespace Project.UI.Controllers
     [Authorize(Roles = "A")]
     public class GraphicController : Controller
     {
-        CategoryManager _cManager;
-        ProductManager _pManager;
+        CategoryRepository _cRepository;
+        ProductRepository _pRepository;
         public GraphicController()
         {
-            _cManager = new CategoryManager();
-            _pManager = new ProductManager();
+            _cRepository = new CategoryRepository();
+            _pRepository = new ProductRepository();
         }
         // GET: Graphic
         public ActionResult Index()
@@ -35,7 +35,7 @@ namespace Project.UI.Controllers
         {
             List<ProductDTO> dTOs = new List<ProductDTO>();
 
-            dTOs = _pManager.GetActives().Select(x => new ProductDTO { Name = x.Name, Stock = x.Stock }).ToList();
+            dTOs = _pRepository.GetActives().Select(x => new ProductDTO { Name = x.Name, Stock = x.Stock }).ToList();
 
             return dTOs;
         }

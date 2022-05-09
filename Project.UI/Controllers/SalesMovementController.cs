@@ -12,25 +12,25 @@ namespace Project.UI.Controllers
     [Authorize(Roles = "A")]
     public class SalesMovementController : Controller
     {
-        SalesMovementManager _sManager;
-        CustomerManager _cManager;
-        EmployeeManager _eManager;
-        ProductManager _pManager;
+        SalesMovementRepository _sRepository;
+        CustomerRepository _cRepository;
+        EmployeeRepository _eRepository;
+        ProductRepository _pRepository;
         public SalesMovementController()
         {
-            _sManager = new SalesMovementManager();
-            _eManager = new EmployeeManager();
-            _cManager = new CustomerManager();
-            _pManager = new ProductManager();
+            _sRepository = new SalesMovementRepository();
+            _eRepository = new EmployeeRepository();
+            _cRepository = new CustomerRepository();
+            _pRepository = new ProductRepository();
         }
         // GET: SalesMovement
         public ActionResult Index()
         {
             SalesMovementVM vM = new SalesMovementVM()
             {
-                SalesMovements = _sManager.GetActives(),
-                Products=_pManager.GetActives(),
-                Customers=_cManager.GetActives()
+                SalesMovements = _sRepository.GetActives(),
+                Products= _pRepository.GetActives(),
+                Customers=_cRepository.GetActives()
                
             };
             return View(vM);
@@ -40,9 +40,9 @@ namespace Project.UI.Controllers
         {
             SalesMovementVM vM = new SalesMovementVM()
             {
-                Customers=_cManager.GetActives(),
-                Employees=_eManager.GetActives(),
-                Products=_pManager.GetActives()
+                Customers=_cRepository.GetActives(),
+                Employees=_eRepository.GetActives(),
+                Products= _pRepository.GetActives()
             };
             return View(vM);
         }
@@ -50,7 +50,7 @@ namespace Project.UI.Controllers
         [HttpPost]
         public ActionResult AddSalesMovement(SalesMovement salesMovement)
         {
-            _sManager.Add(salesMovement);
+            _sRepository.Add(salesMovement);
             return RedirectToAction("Index");
         }
 
@@ -58,10 +58,10 @@ namespace Project.UI.Controllers
         {
             SalesMovementVM vM = new SalesMovementVM()
             {
-                SalesMovement = _sManager.Find(id),
-                Customers = _cManager.GetActives(),
-                Employees = _eManager.GetActives(),
-                Products = _pManager.GetActives()
+                SalesMovement = _sRepository.Find(id),
+                Customers = _cRepository.GetActives(),
+                Employees = _eRepository.GetActives(),
+                Products = _pRepository.GetActives()
             };
             return View(vM);
         }
@@ -69,7 +69,7 @@ namespace Project.UI.Controllers
         [HttpPost]
         public ActionResult UpdateSalesMovement(SalesMovement salesMovement)
         {
-            _sManager.Update(salesMovement);
+            _sRepository.Update(salesMovement);
             return RedirectToAction("Index");
         }
 
@@ -77,7 +77,7 @@ namespace Project.UI.Controllers
         {
             SalesMovementVM vM = new SalesMovementVM()
             {
-                SalesMovements = _sManager.Where(x => x.ID == id).ToList()
+                SalesMovements = _sRepository.Where(x => x.ID == id).ToList()
             };
             return View(vM);
         }

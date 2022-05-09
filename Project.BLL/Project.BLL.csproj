@@ -55,20 +55,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DesingPatterns\GenericRepository\BaseRep\BaseRepository.cs" />
-    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\AdminManager.cs" />
-    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\CategoryManager.cs" />
-    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\CustomerManager.cs" />
-    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\DepartmentManager.cs" />
-    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\EmployeeManager.cs" />
-    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\ExpensManager.cs" />
-    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\InvoiceBodyManager.cs" />
-    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\InvoiceManager.cs" />
-    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\MessageManager.cs" />
-    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\ProductManager.cs" />
-    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\SalesMovementManager.cs" />
-    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\ShippingDetailManager.cs" />
-    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\ShippingTrackingManager.cs" />
-    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\ToDoManager.cs" />
+    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\AdminRepository.cs" />
+    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\CategoryRepository.cs" />
+    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\CustomerRepository.cs" />
+    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\DepartmentRepository.cs" />
+    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\EmployeeRepository.cs" />
+    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\ExpensRepository.cs" />
+    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\InvoiceBodyRepository.cs" />
+    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\InvoiceRepository.cs" />
+    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\MessageRepository.cs" />
+    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\ProductRepository.cs" />
+    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\SalesMovementRepository.cs" />
+    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\ShippingDetailRepository.cs" />
+    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\ShippingTrackingRepository.cs" />
+    <Compile Include="DesingPatterns\GenericRepository\ConcreteRep\ToDoRepository.cs" />
     <Compile Include="DesingPatterns\GenericRepository\InterfaceRep\IRepository.cs" />
     <Compile Include="DesingPatterns\SingeltonPattern\DBTool.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
